@@ -20,8 +20,11 @@
 	$: url = `/show/${slides.filter(el=>!!el).map(el=>el.trim()).join('/').trim().replace(/\n\s+/g,'\n').replace(/\n+/g,'|')}`
 
 	function autoGrow(e) {
+		console.log(e.target)
 		let scroll_height = e.target.scrollHeight
-		e.target.style.height = scroll_height +  2 + 'px'
+		let offsetHeight = e.target.offsetHeight
+		console.log(e.target.offsetHeight +' - '+ scroll_height)
+		// e.target.style.height = parseInt(scroll_height) +  2 + 'px'
 	}
 
 	function del(idx) {
