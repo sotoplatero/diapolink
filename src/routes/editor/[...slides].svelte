@@ -14,16 +14,22 @@
 </script>
 
 <script>
+	import { session } from '$app/stores';	
 	import { browser } from '$app/env';	
 
 	export let slides = ['']
-	$: url = `/show/${slides.filter(el=>!!el).map(el=>el.trim()).join('/').trim().replace(/\n\s+/g,'\n').replace(/\n+/g,'|')}`
+	let url = ''
+
+	$: if ( browser ) {
+		let slideUrl = slides
+			.filter( el => !!el )
+			.map( el =>  el.trim().replace( /(\n\s?)+/g, '|' ) )
+		$session['url'] = `/show/${ encodeURIComponent( slideUrl.join('/') ) }`
+	}
 
 	function autoGrow(e) {
-		console.log(e.target)
 		let scroll_height = e.target.scrollHeight
 		let offsetHeight = e.target.offsetHeight
-		console.log(e.target.offsetHeight +' - '+ scroll_height)
 		// e.target.style.height = parseInt(scroll_height) +  2 + 'px'
 	}
 
@@ -33,26 +39,27 @@
 	}
 
 </script>
-<div class="space-y-4 text-lg mt-16">
-	<h1>Nueva Presentación</h1>
-	<p>Crea una presentación agregando el texto de cada una de las diapositivas. Puedes ir revisando en la vista previa.</p>
+<div class="space-y-1 text-lg pt-10">
+	<h1 class="text-2xl text-gray-800 font-bold mb-2">Create Presentation</h1>
+<!-- 	<p>Crea una presentación agregando el texto de cada una de las diapositivas. Puedes ir revisando en la vista previa.</p> -->
 	{#each slides as slide, index}
 	<div>
 		<div class='text-right'>
 			<button on:click={ () => del(index) } class='text-sm text-gray-500 hover:text-red-500'>
-				Eliminar
+				Remove
 			</button>
 		</div>
 		<textarea
-			class="w-full border-2 border-gray-300 py-3 px-5 text-gray-600 min-h-48 focus:outline-none overscroll-none text-medium"
+			class="w-full py-2 px-3 text-gray-600 focus:outline-none overscroll-none text-medium shadow-sm rounded-lg border border-gray-100"
 			bind:value={slide}
 			on:input={autoGrow}
+			rows="5"
 		></textarea>
 	</div>
 	{/each}
 	<div>
-		<button on:click={ () => slides = [...slides,''] } class='border-2 border-gray-300 px-6 py-2 font-semibold hover:bg-gray-100 text-gray-600'>
-			+ Diapositiva
+		<button on:click={ () => slides = [...slides,''] } class='px-6 py-2 font-semibold bg-gray-700 hover:bg-gray-800 text-gray-100 hover:text-white rounded-lg'>
+			+ Slide
 		</button>
 		{#if slides.join().trim() !==''}
 
@@ -60,16 +67,12 @@
 				Tweet
 			</a>
 
-			<a href={url} target="_blank" class='px-6 py-2 font-semibold disabled:text-gray-300'>Vista Previa</a>
-
 		{/if}
 	</div>
 
 </div>
 
 <style>
-	h1{ @apply text-3xl text-gray-800 font-bold mb-2; }
-	/*h3{ @apply text-xl text-gray-800 font-semibold mb-2; }*/
 	p{ @apply text-lg text-gray-700 mt-2; }
 	/*code{ @apply bg-gray-100 px-3 font-mono; }*/
 </style>

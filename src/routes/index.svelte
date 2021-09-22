@@ -8,83 +8,73 @@
 </svelte:head>
 
 <main>
-	<header class="py-28">
-
-		<h1 class="font-extrabold text-gray-800 text-4xl sm:text-6xl tracking-tighter mb-2">
-			Crea <br>divertidas <span class="text-pink-700">presentaciones</span><br> desde la <span class="text-pink-700">URL</span>
-		</h1>
-		<div class="text-xl sm:text-3xl font-medium text-gray-500 leading-relaxed">Haz una presentación de tu <span class="font-bold">nuevo producto</span>, escribe un <span class="font-bold">mini-tutorial</span>, comparte una <span class="font-bold">historia corta</span>. <strong>DiapoLink</strong> hace presentaciones solo escribiendo la url</div>
-		<a href="/editor" class='text-3xl py-7 font-extrabold hover:text-pink-700 text-pink-600 inline-block'>
-			Crear Presentación &rarr;
-		</a>
+	<header class="flex items-center py-16 ">
+		<div>
+			<h1 class="text-gray-800 text-8xl sm:text-6xl tracking-tighter mb-2">
+				Create <br><span class="text-pink-700">presentations</span> easily
+			</h1>
+			<div class="font-light text-2xl sm:text-3xl text-gray-500 leading-relaxed mt-4 font-semibold">Don't waste time designed complex slides just paste the text and you're done</div>
+			<a href="/editor" class='text-4xl py-4 px-10 transition border-2 border-pink-600 text-pink-600 inline-block mt-8 rounded'>
+				Start&rarr;
+			</a>
+		</div>
+		<div class="w-1/2 flex-shrink-0">
+			<img src="/img/get-started.svg">
+		</div>
 	</header>
 
-	<div class="mb-16">
-		<h2>¿Cómo funciona?</h2>
-		<p>El servicio funciona sobre las dirección <code>/show</code> y el texto de cada diapositiva separado por slash <code>/</code>, como en una url, ejemplo:</p>
-		<p>
-			<a href="/show/diapositiva 1/diapositiva 2/diapositiva 3" target="_blank" class="link">/show/diapositiva 1/diapositiva 2/diapositiva 3</a>
-		</p>
-	</div>
+	<h2>Why use DiapoLink?</h2>
 
-	<div class="mb-8">
-		<h2>Formato</h2>
-		<p>DiapoLink utiliza un formato tomando como base el markdown para poder tener Títulos, <strong>negritas</strong>, <em>inclinadas</em>, cuentas de Twitter, enlaces y listas.</p>
-		<p>Utiliza el carácter <code>|</code> como separador de lineas dentro de una diapositiva</p>
-		<p>
-			<a href="/show/título 1|contenido de la diapositiva 1/título 2|contenido de la diapositiva/título 3|contenido de la diapositiva 3" target="_blank" class="link">/show/título 1|contenido de la diapositiva 1/título 2|contenido de la diapositiva/título 3|contenido de la diapositiva 3</a>
-		</p>
-	</div>
+	<div class="space-y-40">
 
-	<div class="space-y-8">
-		<div class="">
-			<h3>Título</h3>
-			<p>Utilizando el separador <code>|</code> puedes añadir las lineas que necesites. La primera de esas lineas dentro de una diapositiva será tomada como el Tiulo.</p>
-			<p>
-				<a href="/show/titulo de la diapositiva|es la primera línea de la diapositiva" target="_blank" class="link"> 
-					/show/titulo de la diapositiva|es la primera línea de la diapositia
-				</a>
-			</p>
+		<div class="flex items-center space-x-32">
+			<div class="w-1/2 flex-shrink-0">
+				<img src="/img/save-money.svg">	
+			</div>
+			<div>
+				<h3>Free</h3>
+				<p>Create endless presentations without paying a dime</p>
+			</div>
 		</div>
 
-		<div class="">
-			<h3>Cuenta en Twitter</h3>
-			<p>Si escribes tu cuenta a twitter iniciando con @ se creará un enlace a tu perfil</p>
-			<p>
-				<a href="/show/Incluye tu cuenta en twitter escribiendo tu usuario @sotoplatero" target="_blank" class="link">/show/Incluye tu cuenta en twitter escribiendo tu usuario @sotoplatero</a>
-			</p>
+		<div class="flex items-center space-x-12">
+			<div class="w-1/2">
+				<img src="/img/meditation.svg">	
+			</div>
+			<div>
+				<h3>Easy</h3>
+				<p>does not require user registration just use it</p>
+			</div>
 		</div>
 
-		<div class="">
-			<h3>Enlaces</h3>
-			<p>Puedes incluir tus enlaces pero solo a un dominio es decir puedes publicar tu <em>dominio.com</em> pero no a <em>dominio.com/about</em></p>
-			<p>
-				<a href="/show/comparte tu sitio web ej: cssfindes.xyz en cualquier diapositiva" target="_blank" class="link">/show/comparte el enlace a tu sitio web ej: cssfindes.xyz en cualquier diapositiva</a>
-			</p>
+		<div class="flex items-center space-x-28">
+			<div class="w-1/2 flex-shrink-0">
+				<img src="/img/time-managment.svg">	
+			</div>
+			<div>
+				<h3>Don't waste time</h3>
+				<p>If you do not like to waste time designing a simple presentation, choosing colors, looking for Diapolink images is what you need</p>
+			</div>
 		</div>
 
-		<div class="">
-			<h3>Negritas, cursivas</h3>
-			<p>Solo utiliza el fomato de markdown: entre doble asterisco para <strong>**negritas**</strong>, entre asteriscos sencillos para <em>*cursivas*</em></p>
-			<p>
-				<a href="/show/decora el texto con **negritas** y *cursivas* e incluye code si eres " target="_blank" class="link">/show/Incluye tu cuenta en twitter escribiendo tu usuario @sotoplatero</a>
-			</p>			
+		<div class="flex items-center space-x-12">
+			<div class="w-1/2 flex-shrink-0">
+				<img src="/img/focus-on-positive-activities.svg">	
+			</div>
+			<div>
+				<h3>Pretty Format</h3>
+				<p>If you do not like to waste time designing a simple presentation, choosing colors, looking for Diapolink images is what you need</p>
+			</div>
 		</div>
 	</div>
 
-	<div class="text-center my-20 p-12 bg-pink-100">
-		<!-- <h2>Me cuadra</h2> -->
-		<a href="/editor" class='text-3xl font-extrabold bg-pink-700 text-white py-4 px-5 rounded-xl border inline-block'>
-			Crear Presentación &rarr;
-		</a>
-	</div>
 
 </main>
 
 <style>
-	h2{ @apply text-3xl text-gray-800 font-bold mb-2; }
-	h3{ @apply text-xl text-gray-800 font-semibold mb-2; }
-	p{ @apply text-lg text-gray-700 mt-2; }
+	h2{ @apply text-3xl text-gray-800 font-bold mb-8; }
+	h3{ @apply text-5xl text-gray-800 mb-2; }
+	p{ @apply font-light text-3xl text-gray-700 mt-2; }
 	code{ @apply bg-gray-100 px-3 font-mono; }
 </style>
 

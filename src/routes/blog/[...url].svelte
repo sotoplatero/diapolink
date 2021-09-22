@@ -17,9 +17,9 @@
 </script>
 <script>
 	import { page } from '$app/stores';
-	import './_slide.postcss'
+	// import './_slide.postcss'
 	import { onMount } from 'svelte'
-	import Footer from './_inc/footer.svelte'
+	// import Footer from './_inc/footer.svelte'
 
 	export let title
 	export let pattern
