@@ -22,7 +22,7 @@ export async function get({query}) {
 
 	const $ = cheerio.load(html)
 	let rss = $('link[type="application/rss+xml"],link[type="application/atom+xml"]').attr('href')
-	let creator = $('meta[name="twitter:site"],meta[name="twitter:user"]')?.attr('content')
+	let creator = $('meta[name="twitter:site"],meta[name="twitter:user"],meta[property="twitter:site"],meta[property="twitter:user"]')?.attr('content')
 	let description = $('meta[property="description"],meta[name="description"],meta[property="og:description"]').attr('content')
 	rss = getDomain(rss) ? rss : url + rss
 	const feed = await parser.parseURL( rss );
