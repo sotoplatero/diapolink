@@ -20,6 +20,7 @@
 </script>
 <script>
 	import {formatMention} from '$lib/formattext'
+	import Avatar from '$lib/components/avatar.svelte'
 	import '$lib/random'	
 	export let blog = {}
 	export let bg
@@ -59,8 +60,8 @@
 				<p class="text-intro">{post.excerpt}</p>
 				{#if post.author}
 					<p class="text-intro">
-						<img src="https://unavatar.io/{post.author}" class="avatar-48">
-						{@html formatMention(post.author)}
+						<Avatar username={post.author} />
+						<strong>{@html formatMention(post.author)}</strong>
 					</p>
 				{/if}
 			</div>

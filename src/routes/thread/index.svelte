@@ -1,7 +1,7 @@
 <script>
   import { goto } from '$app/navigation';  
-  let blog = ''
-  $: url = `/blog/${ blog.replace(/^https?:\/\//i,'') }`
+  let tweet = ''
+  $: url = `/thread/${ tweet.split('/').pop().split('?')[0] }`
 </script>
 <article id="">
   
@@ -13,7 +13,7 @@
         <p>Write your url blog to create and publish a slideshow with its posts. 
         </p>
           <form on:submit={goto(url)}>
-            <input bind:value={blog} type="text" placeholder="Type your url blog" required="" class="">
+            <input bind:value={tweet} type="text" placeholder="Type your url blog" required="" class="">
           </form>
           <p>
             

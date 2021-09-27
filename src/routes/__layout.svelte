@@ -1,16 +1,15 @@
 <script>
+	import { navigating } from '$app/stores';	
 	import {onMount} from 'svelte'
 	import { session } from '$app/stores';	
 	import { browser } from '$app/env'
 	import { dev } from '$app/env';	
-	// import '../app.postcss';
-	import 'webslides/static/css/webslides.css'
-	// import 'webslides/static/js/webslides.js'
 
 	onMount(async () => {
 		await import('webslides')
 		window.ws = new WebSlides();
 	})
+
 </script>
 
 <svelte:head>
