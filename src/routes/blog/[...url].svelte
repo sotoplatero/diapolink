@@ -1,105 +1,59 @@
 <script context="module">
 	import formatSlide from '$lib/formatslide'	
 	import getPattern from '$lib/pattern'
+
     export async function load({page, fetch}) {
 
-    	let slides = page.params.slides.replace(/\-/g,' ').split('/')
-    	const title = slides[0].split('|')[0]
-		slides = slides.map( el => formatSlide(el))
+    	const res = await fetch(`/blog.json?url=${page.params.url}`)
+    	const blog = await res.json()
 
 		const pattern = getPattern()
 
 		return {
-			props: { pattern, slides, title }
+			props: { pattern, blog }
 		}
 
     }	
 </script>
 <script>
-	import { page } from '$app/stores';
-	// import './_slide.postcss'
-	import { onMount } from 'svelte'
-	// import Footer from './_inc/footer.svelte'
-
-	export let title
-	export let pattern
-	export let slides = []
-	let params = $page.params.slides
-
-	let hasPrev = false
-	let hasNext = false
-
-	onMount(()=>{
-	    hasNext = !!document.querySelector('.translate-x-0').nextSibling;
-
-		document.body.addEventListener("keyup", (e) => {
-			if (e.code === 'ArrowRight') next()
-			if (e.code === 'ArrowLeft') prev()
-	    });
-		document.body.focus()
-	})
-
-	function prev() {
-	    let activeSlide = document.querySelector('.translate-x-0');
-	    let prevSlide = activeSlide.previousSibling;
-	    hasPrev = !!prevSlide.previousSibling
-	    hasNext = !!prevSlide.nextSibling
-
-	    if (!!prevSlide) {
-		    activeSlide.classList.remove('translate-x-0');
-		    activeSlide.classList.add('translate-x-full');
-
-		    prevSlide.classList.remove('-translate-x-full');
-		    prevSlide.classList.add('translate-x-0');
-	    }
-	}
-
-	function next() {
-	    let activeSlide = document.querySelector('.translate-x-0');;
-	    let nextSlide = activeSlide.nextSibling;
-	    hasPrev = !!nextSlide.previousSibling
-	    hasNext = !!nextSlide.nextSibling
-
-	    if (!!nextSlide) {
-		    activeSlide.classList.remove('translate-x-0');
-		    activeSlide.classList.add('-translate-x-full');
-	    
-		    nextSlide.classList.remove('translate-x-full');
-		    nextSlide.classList.add('translate-x-0');
-	    }
-	}
-
-	const ogImage = `https://cdn.statically.io/og/${title}.jpg`
-
+	import {formatMention} from '$lib/formattext'
+	export let blog = {}
 </script>
 
-<svelte:head>
-	<title>{title}</title>
-	<meta property="og:title" content="{title}">	
-	<meta property="og:image" content="{ogImage}" />	
-	<meta property="twitter:title" content="{title}">
-	<meta property="twitter:image" content="{ogImage}" />
-</svelte:head>
- 
-<div class="slides relative w-screen h-screen overflow-hidden " style={pattern}>
-	<div class="slides"  >
-		{#each slides as slide, index (slide)}
-		    <div class="slide absolute inset-0 w-screen h-screen text-white flex items-center justify-center px-5 md:px-20 py-10 sm:px-52 transition-all ease-in-out duration-1000 transform text-3xl sm:text-5xl sm:leading-normal bg-transparent { !index ? 'translate-x-0' : 'translate-x-full'} " >
-		    	<div class="max-h-full">
-			    	{@html slide}
-		    	</div>
+<article id="webslides">
+
+	<section class="aligncenter">
+		<div class="wrap size-60">
+			<p class="text-subtitle">
+				{blog.domain}
+			</p>			
+			<h1>{blog.title}</h1>	
+			{#if blog.description}
+				<p>{blog.description}</p>
+			{/if}
+			<p class="text-symbols">⭐⭐⭐</p>			
+		</div>
+	</section>
+
+	{#each blog.posts as post, index}
+		<section >
+			<div class="wrap size-60">
+				<p class="text-subtitle">
+					<img src="https://logo.clearbit.com/{blog.domain}" class="avatar-48">
+					{blog.domain}
+				</p>
+				<h2><a href="{post.url}"><strong>{post.title}</strong></a></h2>
+				<p>{post.date} 
+					{#if post.time}
+						&bull; {post.time} minutes
+					{/if}
+				</p>
+				<p class="text-intro">{post.excerpt}</p>
+				{#if post.author}
+					<p class="text-intro">{@html formatMention(post.author)}</p>
+				{/if}
 			</div>
-		{/each}
-	</div>
-	{#if hasPrev}
-		<button on:click={prev} class="absolute top-[50%] left-4 text-6xl text-white opacity-40 hover:opacity-75">
-			&larr;
-		</button>
-	{/if}
-	{#if hasNext}
-		<button on:click={next} class="absolute top-[50%] right-4 text-6xl text-white opacity-40 hover:opacity-75">
-			&rarr;
-		</button>
-	{/if}
-	<Footer {params} class="absolute bottom-0 left-0 w-full m-2"/>
-</div>
+		</section>
+	{/each}
+</article>
+ 

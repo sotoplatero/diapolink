@@ -22,19 +22,30 @@ export async function get({query}) {
 
 	const $ = cheerio.load(html)
 	let rss = $('link[type="application/rss+xml"],link[type="application/atom+xml"]').attr('href')
+	let creator = $('meta[name="twitter:site"],meta[name="twitter:user"]')?.attr('content')
+	let description = $('meta[property="description"],meta[name="description"],meta[property="og:description"]').attr('content')
 	rss = getDomain(rss) ? rss : url + rss
 	const feed = await parser.parseURL( rss );
 
-	return {
-		body: { 
-			...feed.items
-				.filter( (i,idx) => idx <= 3 )
-				.map( ({title,link,contentSnippet}) => ({
-					title: title,
-					url: link,
-					excerpt: contentSnippet.slice(0,280) 
-				}) )	
+	const cpm = 225 // characters per minutes
+	const blog = {
+		title: feed.title,
+		description: feed.description ?? description,
+		url: feed.link,
+		domain: getDomain(rss),
+		posts: feed.items
+			.map( post => ({
+				title: post.title,
+				url: post.link,
+				date: new Date(post.pubDate).toLocaleDateString(),
+				time: Math.floor( post.contentSnippet.length / cpm ),
+				excerpt: post.contentSnippet.slice(0,280),
+				author: post.creator ?? creator,
+			}) )
 		}
+
+	return {
+		body: blog
 	};
 
 }

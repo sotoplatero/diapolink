@@ -1,7 +1,16 @@
 <script>
+	import {onMount} from 'svelte'
 	import { session } from '$app/stores';	
+	import { browser } from '$app/env'
 	import { dev } from '$app/env';	
-	import '../app.postcss';
+	// import '../app.postcss';
+	import 'webslides/static/css/webslides.css'
+	// import 'webslides/static/js/webslides.js'
+
+	onMount(async () => {
+		await import('webslides')
+		window.ws = new WebSlides();
+	})
 </script>
 
 <svelte:head>
@@ -11,7 +20,7 @@
 </svelte:head>
 
 <div class="max-w-screen-lg mx-auto w-full px-2">
-	<header class="sticky top-0 z-40 py-2	bg-gray-50">
+<!-- 	<header class="sticky top-0 z-40 py-2	bg-gray-50">
 		<div class="">
 		<div class="flex items-center justify-between ">
 
@@ -29,17 +38,17 @@
 		</div>
 			
 		</div>
-	</header>
+	</header> -->
 
 	<slot />
 
-  <footer class="max-w-screen-sm mx-auto mt-24 mb-12 text-sm text-center 
+<!--   <footer class="max-w-screen-sm mx-auto mt-24 mb-12 text-sm text-center 
   space-y-4">
   	<div>Proudly develop with <a href="https://kit.svelte.dev" target="_blank" rel="nofollow noopener">SvelteKit</a>, <a href="https://tailwindcss.com" target="_blank" rel="nofollow noopener">Tailwind</a> and hosted in <a href="https://vercel.com">Vercel</a></div>
 
   	<div>
       If 💓 DiapoLink  follow me <a href="https://twitter.com/sotoplatero" class="text-blue-500" target="_blank" rel="me">@sotoplatero</a> for more projects like <a href="htps://cssfinder.xyz">CSSFinder</a>
     </div>
-  </footer>
+  </footer> -->
 
 </div>
