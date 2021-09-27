@@ -24,12 +24,13 @@
 
 	<section class="aligncenter">
 		<div class="wrap size-60">
+			<img src="https://logo.clearbit.com/{blog.domain}" class="avatar-56">
 			<p class="text-subtitle">
 				{blog.domain}
 			</p>			
 			<h1>{blog.title}</h1>	
 			{#if blog.description}
-				<p>{blog.description}</p>
+				<p class="text-intro">{blog.description}</p>
 			{/if}
 			<p class="text-symbols">⭐⭐⭐</p>			
 		</div>
