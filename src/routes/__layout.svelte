@@ -1,11 +1,13 @@
 <script>
-	import { navigating } from '$app/stores';	
-	import {onMount} from 'svelte'
-	import { session } from '$app/stores';	
-	import { browser } from '$app/env'
-	import { dev } from '$app/env';	
+	import "../app.postcss";
+    import { navigating } from '$app/stores';
+    import {onMount} from 'svelte'
+    import { session } from '$app/stores';
+    import { browser } from '$app/env'
+    import { dev } from '$app/env';
+    import 'webslides/static/css/webslides.css'
 
-	onMount(async () => {
+    onMount(async () => {
 		await import('webslides')
 		window.ws = new WebSlides();
 	})
@@ -14,7 +16,7 @@
 
 <svelte:head>
 {#if !dev}
-		<script async defer data-website-id="56437991-d609-4892-8938-0b7258634e52" src="https://umami.dsoto.dev/umami.js"></script>		
+		<script async="" defer="" data-website-id="56437991-d609-4892-8938-0b7258634e52" src="https://umami.dsoto.dev/umami.js"></script>		
 {/if}
 </svelte:head>
 
@@ -39,7 +41,7 @@
 		</div>
 	</header> -->
 
-	<slot />
+	<slot>
 
 <!--   <footer class="max-w-screen-sm mx-auto mt-24 mb-12 text-sm text-center 
   space-y-4">
@@ -50,4 +52,6 @@
     </div>
   </footer> -->
 
-</div>
+</slot></div>
+
+<slot></slot>

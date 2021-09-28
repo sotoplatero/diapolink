@@ -9,6 +9,7 @@ let parser = new Parser()
  */
 export async function get({query}) {
 	let url = query.get('url')
+	console.log(url)
 	url = /^http/.test(url) ? url : `https://${url}`
 
 	const res = await fetch(url)

@@ -1,19 +1,20 @@
 <script context="module">
-	import formatSlide from '$lib/formatslide'	
-	import getPattern from '$lib/pattern'
-	import {bgs} from '$lib/const'
-	import '$lib/random'
+	// import formatSlide from '$lib/formatslide'	
+	// import getPattern from '$lib/pattern'
+	// import {bgs} from '$lib/const'
+	// import '$lib/random'
 
-    export async function load({page, fetch}) {
+    export async function load({page, query, fetch}) {
 
+    	// const theme = page.params.options
     	const res = await fetch(`/blog.json?url=${page.params.url}`)
     	const blog = await res.json()
 
-		const pattern = getPattern()
-		const bg = bgs.random()
+		// const pattern = getPattern()
+		// const bg = bgs.random()
 
 		return {
-			props: { pattern, blog, bg }
+			props: { blog }
 		}
 
     }	
@@ -23,20 +24,20 @@
 	import Avatar from '$lib/components/avatar.svelte'
 	import '$lib/random'	
 	export let blog = {}
-	export let bg
-	let emoji = [ '❤️', '🔥', '✨','👏'].random()
+	export let theme = ''
+	let emoji = [ '❤️','✨','👏','👌','👍','⭐'].random()
 
 </script>
 
-<article id="webslides" class="{bg}">
+<article id="webslides" class="h-screen  !overflow-y-hidden ">
 
-	<section class="aligncenter">
+	<section class="aligncenter h-screen ">
 		<div class="wrap size-50">
-			<img src="https://logo.clearbit.com/{blog.domain}" class="avatar-56">
+			<img src="https://logo.clearbit.com/{blog.domain}" class="avatar-58" alt="Logo Blog">
+			<h1>{blog.title}</h1>	
 			<p class="text-subtitle">
 				{blog.domain}
 			</p>			
-			<h1>{blog.title}</h1>	
 			{#if blog.description}
 				<p class="text-intro">{@html blog.description}</p>
 			{/if}
@@ -45,25 +46,22 @@
 	</section>
 
 	{#each blog.posts as post, index}
-		<section >
+		<section class="slideInRight">
 			<div class="wrap size-60">
 				<p class="text-subtitle">
 					<img src="https://logo.clearbit.com/{blog.domain}" class="avatar-40">
 					{blog.domain}
 				</p>
 				<h2><a href="{post.url}"><strong>{post.title}</strong></a></h2>
-				<p>{post.date} 
+				<p>
+					{@html formatMention(post.author)}
+					&bull;
+					{post.date} 
 					{#if post.time}
 						&bull; {post.time} minutes
 					{/if}
 				</p>
-				<p class="text-intro">{post.excerpt}</p>
-				{#if post.author}
-					<p class="text-intro">
-						<Avatar username={post.author} />
-						<strong>{@html formatMention(post.author)}</strong>
-					</p>
-				{/if}
+				<p class="text-intro line-clamp-3 sm:line-clamp-5">{post.excerpt}</p>
 			</div>
 		</section>
 	{/each}
