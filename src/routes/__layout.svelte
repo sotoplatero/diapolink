@@ -20,7 +20,6 @@
 {/if}
 </svelte:head>
 
-<div class="max-w-screen-lg mx-auto w-full px-2">
 <!-- 	<header class="sticky top-0 z-40 py-2	bg-gray-50">
 		<div class="">
 		<div class="flex items-center justify-between ">
@@ -41,7 +40,7 @@
 		</div>
 	</header> -->
 
-	<slot>
+	<!-- <slot> -->
 
 <!--   <footer class="max-w-screen-sm mx-auto mt-24 mb-12 text-sm text-center 
   space-y-4">
@@ -52,6 +51,6 @@
     </div>
   </footer> -->
 
-</slot></div>
+<!-- </slot></div> -->
 
 <slot></slot>

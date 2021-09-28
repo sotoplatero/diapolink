@@ -32,7 +32,7 @@
 <article id="webslides" class="h-screen  !overflow-y-hidden ">
 
 	<section class="aligncenter h-screen ">
-		<div class="wrap size-50">
+		<div class="wrap size-60">
 			<img src="https://logo.clearbit.com/{blog.domain}" class="avatar-58" alt="Logo Blog">
 			<h1>{blog.title}</h1>	
 			<p class="text-subtitle">
@@ -46,7 +46,7 @@
 	</section>
 
 	{#each blog.posts as post, index}
-		<section class="slideInRight">
+		<section class="">
 			<div class="wrap size-60">
 				<p class="text-subtitle">
 					<img src="https://logo.clearbit.com/{blog.domain}" class="avatar-40">

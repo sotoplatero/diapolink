@@ -20,12 +20,15 @@
 	export let tweets = []
 	export let author
 </script>
-<article id="webslides">
+<article id="webslides" class="bg-apple">
 	{#each tweets as tweet, index}
 		<section >
-			<div class="wrap size-60">
-				<p class="text-intro"><strong>{author.name}</strong></p>
-				<h3>{tweet.text}</h3>
+			<div class="wrap size-50">
+				<p class="text-intro">
+					<strong>{@html author.name}</strong>
+					<span class="text-gray-500">@{author.username}</span>
+				</p>
+				<p class="text-intro">{tweet.text}</p>
 			</div>
 		</section>
 	{/each}
