@@ -1,5 +1,6 @@
 import Twitter from 'twitter-v2';
-// import Twitter from 'twitter-lite';
+// import tweetify from '$lib/render_entities'
+// import tweetToHTML from 'tweet-to-html';
 
 const t = new Twitter({
 	bearer_token: import.meta.env.VITE_TWITTER_BEARER_TOKEN
@@ -11,7 +12,7 @@ const t = new Twitter({
 
 const options = { 
 		tweet: {
-			fields: 'author_id,conversation_id,created_at,in_reply_to_user_id,referenced_tweets'
+			fields: 'author_id,conversation_id,created_at,in_reply_to_user_id,referenced_tweets,entities'
 		},
 		expansions:'author_id,in_reply_to_user_id,referenced_tweets.id',
 		user: {
@@ -41,6 +42,7 @@ export async function get({params}) {
 	
 	const thread = tweets
 		.filter( t => t.in_reply_to_user_id === t.author_id ) 
+		// .map(t=>({...t,html: tweetToHTML.parse(t) 	}))
 		.reverse()
 
 	return {
@@ -57,9 +59,15 @@ export async function get({params}) {
 }
 
 async function getTweet(id) {
-	const {data,includes} = await t.get('tweets', { ids: id,	...options });
+	const {data,includes} = await t.get('tweets', { 
+		...options, 		
+		ids: id,	
+		user: {
+			fields: 'name,username,description,profile_image_url,url'
+		}, 
+	});
 	return { 
-		tweet: data[0], 
+		tweet: {...data[0]}, 
 		author: includes.users[0] 
 	}
 }

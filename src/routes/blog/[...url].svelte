@@ -20,7 +20,6 @@
     }	
 </script>
 <script>
-	import {formatMention} from '$lib/formattext'
 	import Avatar from '$lib/components/avatar.svelte'
 	import '$lib/random'	
 	export let blog = {}
@@ -29,9 +28,9 @@
 
 </script>
 
-<article id="webslides" class="h-screen  !overflow-y-hidden ">
+<article id="webslides" class="h-screen !overflow-y-hidden ">
 
-	<section class="aligncenter h-screen ">
+	<section class="aligncenter h-screen">
 		<div class="wrap size-60">
 			<img src="https://logo.clearbit.com/{blog.domain}" class="avatar-58" alt="Logo Blog">
 			<h1>{blog.title}</h1>	
@@ -54,7 +53,7 @@
 				</p>
 				<h2><a href="{post.url}"><strong>{post.title}</strong></a></h2>
 				<p>
-					{@html formatMention(post.author)}
+					{@html post.author}
 					&bull;
 					{post.date} 
 					{#if post.time}

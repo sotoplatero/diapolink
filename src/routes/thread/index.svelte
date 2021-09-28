@@ -7,13 +7,13 @@
   
   <section class="bg-apple" style="">
 <!--     <span class="background-right-bottom" style="background-image:url('../static/images/iphone-hand.png')"></span> -->
-    <div class="wrap size-50">
+    <div class="wrap size-60">
       <div class="content-center">
-        <h1>Blog to Slideshow</h1>
-        <p>Write your url blog to create and publish a slideshow with its posts. 
+        <h1>Thread to Slideshow</h1>
+        <p>Write some tweet url from thread to create and publish a slideshow with its tweets. 
         </p>
           <form on:submit={goto(url)}>
-            <input bind:value={tweet} type="text" placeholder="Type your url blog" required="" class="">
+            <input bind:value={tweet} type="text" placeholder="Type your url blog" class="text-gray-700">
           </form>
           <p>
             
