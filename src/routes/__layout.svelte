@@ -1,5 +1,5 @@
 <script>
-	import "../app.postcss";
+	// import "../app.postcss";
     import { navigating } from '$app/stores';
     import {onMount} from 'svelte'
     import { session } from '$app/stores';
