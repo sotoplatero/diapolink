@@ -21,6 +21,7 @@
 </script>
 <script>
 	import Avatar from '$lib/components/avatar.svelte'
+	import Slide from '$lib/components/slide.svelte'
 	import '$lib/random'	
 	export let blog = {}
 	export let theme = ''
@@ -45,24 +46,22 @@
 	</section>
 
 	{#each blog.posts as post, index}
-		<section class="">
-			<div class="wrap size-60">
-				<p class="text-subtitle">
-					<img src="https://logo.clearbit.com/{blog.domain}" class="avatar-40">
-					{blog.domain}
-				</p>
-				<h2><a href="{post.url}"><strong>{post.title}</strong></a></h2>
-				<p>
-					{@html post.author}
-					&bull;
-					{post.date} 
-					{#if post.time}
-						&bull; {post.time} minutes
-					{/if}
-				</p>
-				<p class="text-intro line-clamp-3 sm:line-clamp-5">{post.excerpt}</p>
-			</div>
-		</section>
+		<Slide >
+			<p class="text-subtitle">
+				<img src="https://logo.clearbit.com/{blog.domain}" class="avatar-40">
+				{blog.domain}
+			</p>
+			<h2><a href="{post.url}"><strong>{post.title}</strong></a></h2>
+			<p>
+				{@html post.author}
+				&bull;
+				{post.date} 
+				{#if post.time}
+					&bull; {post.time} minutes
+				{/if}
+			</p>
+			<p class="text-intro line-clamp-3 sm:line-clamp-5">{post.excerpt}</p>
+		</Slide>
 	{/each}
 </article>
  

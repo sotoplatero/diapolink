@@ -8,10 +8,10 @@
     <meta property="twitter:image" content="https://cdn.statically.io/og/theme=dark/DiapoLink - Crea divertidas presentaciones desde la URL.jpg"  />
 </svelte:head>
 
-<article id="webslides" >
+<article id="webslides" class="vertical">
 
 	<section class="">
-		<div class="wrap aligncenter size-70">
+		<div class="wrap aligncenter size-60">
 			<div class="content-center">
 				<h1 ><strong>Create SlideShow Easily</strong></h1>
 				<p class="text-intro">

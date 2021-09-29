@@ -14,7 +14,7 @@ const options = {
 		tweet: {
 			fields: 'author_id,conversation_id,created_at,in_reply_to_user_id,referenced_tweets,entities'
 		},
-		expansions:'author_id,in_reply_to_user_id,referenced_tweets.id',
+		expansions:'author_id,in_reply_to_user_id,referenced_tweets.id,attachments.media_keys',
 		user: {
 			fields: 'name,username'
 		},
