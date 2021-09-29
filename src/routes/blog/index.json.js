@@ -9,16 +9,22 @@ let parser = new Parser()
  */
 export async function get({query}) {
 	let url = query.get('url')
-	console.log(url)
 	url = /^http/.test(url) ? url : `https://${url}`
 
-	const res = await fetch(url)
-	if (!res.ok) {
+	try	 {
+		const res = await fetch(url)
+		if (!res.ok) {
+			return {
+				status: 404,
+			}		
+		}
+	} catch (error) {
 		return {
 			status: 404,
-			body: {}
 		}		
 	}
+
+	
 	const html = await res.text()
 	$ = cheerio.load( html)
 	let rss = $('link[type="application/rss+xml"],link[type="application/atom+xml"]').attr('href')

@@ -5,10 +5,9 @@
 </script>
 <article id="">
   
-  <section class="bg-apple" style="">
+  <section class="" style="">
 <!--     <span class="background-right-bottom" style="background-image:url('../static/images/iphone-hand.png')"></span> -->
-    <div class="wrap size-60">
-      <div class="content-center">
+    <div class="wrap size-40 aligncenter">
         <h1>Thread to Slideshow</h1>
         <p>Write some tweet url from thread to create and publish a slideshow with its tweets. 
         </p>
@@ -17,9 +16,8 @@
           </form>
           <p>
             
-          <a href={url} type="submit" tabindex="2" title="URL Blog" class="button">Publish ›</a>
+          <a href={url} type="submit" tabindex="2" title="URL Blog" class="button"><strong>Publish ›</strong></a>
           </p>
-      </div>
     </div>
     <!-- .end .wrap -->
   </section>

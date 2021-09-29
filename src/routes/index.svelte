@@ -10,15 +10,18 @@
 
 <article id="webslides" >
 
-	<section class="flex items-center py-16 ">
-		<div class="wrap aligncenter size-50">
-			<h1 class="text-landing"><strong>Create slideshow easily</strong></h1>
-			<p class="text-intro">
-				Don't waste time designed complex slides.
-			</p>
-			<a href="/create" class="button ga-track" title="Download WebSlides">
-                Free Download
-          </a>
+	<section class="">
+		<div class="wrap aligncenter size-70">
+			<div class="content-center">
+				<h1 ><strong>Create SlideShow Easily</strong></h1>
+				<p class="text-intro">
+					Don't waste time designed complex slides.
+				</p>
+				<a href="/create" class="button ga-track" title="Download WebSlides">
+	                Free Download
+	          </a>
+				
+			</div>
 		</div>		
 	</section>
 
