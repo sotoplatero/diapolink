@@ -1,6 +1,16 @@
 
+<script>
+    import {onMount} from 'svelte'	
+    let ws
+
+    onMount(async () => {
+		await import('webslides')
+		ws = new WebSlides();
+	})	
+
+</script>
 <svelte:head>
-	<meta property="og:title" content="DiapoLink - Crea divertidas presentaciones desde la URL">
+	<meta property="og:title" content="DiapoLink - Create SlideShow Easily">
     <meta property="og:image" content="https://cdn.statically.io/og/theme=dark/DiapoLink - Crea divertidas presentaciones desde la URL.jpg"  />
 
 	<!-- Twitter -->
@@ -8,23 +18,54 @@
     <meta property="twitter:image" content="https://cdn.statically.io/og/theme=dark/DiapoLink - Crea divertidas presentaciones desde la URL.jpg"  />
 </svelte:head>
 
-<article id="webslides" >
+<article id="webslides" class="vertical">
 
-	<section class="">
-		<div class="wrap aligncenter size-70">
+	<section class="bg-black">
+		<span class="background dark" style="background-image:url('/img/back.jpg')"></span>
+
+		<!-- <span class="background dark" style="background-image:url('https://www.freepik.com/free-photo/rocks-stacked-sea_925643.htm#page=1&query=calm&position=0')"></span>		 -->
+		<div class="wrap aligncenter size-60">
+
 			<div class="content-center">
+				<p class="text-subtitle">Diapo.Link</p>				
 				<h1 ><strong>Create SlideShow Easily</strong></h1>
 				<p class="text-intro">
 					Don't waste time designed complex slides.
 				</p>
-				<a href="/create" class="button ga-track" title="Download WebSlides">
-	                Free Download
-	          </a>
+				<div class="grid">
+					<div class="column">
+						<button on:click={ ()=>ws.goNext() } class="button" title="Start DiapoLink">
+			                Start &darr;
+				        </button>
+					</div>
+					<div class="column">
+				        <a href="https://twitter.com/intent/tweet?text=DiapoLink - Create SlideShow Easily&url=" class="button ghost"><strong>TWEET</strong></a>
+					</div>
+				</div>
 				
 			</div>
 		</div>		
 	</section>
 
+	<section class="bg-apple">
+		<div class="wrap size-40">
+			<h2 class="text-landing aligncenter">Create SlideShow Now</h2>
+			<div class="grid">
+				<div class="column">
+					<a href="/blog" class="button">
+						Blog to SlideShow
+					</a>
+				</div>
+				<div class="column">
+					<a href="/blog" class="button">
+						Thread to SlideShow
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+<!-- 
 	<section class="aligncenter ">
 		<div class="wrap">
 			<h2><strong>Why use DiapoLink?</strong></h2>
@@ -73,7 +114,7 @@
 			</div>
 		</div>
 	</section>
-
+ -->
 </article>
 
 
