@@ -1,4 +1,4 @@
-import TwitterApi from 'twitter-api-v2';
+import {TwitterApi} from 'twitter-api-v2';
 
 const twitterClient = new TwitterApi(import.meta.env.VITE_TWITTER_BEARER_TOKEN);
 
