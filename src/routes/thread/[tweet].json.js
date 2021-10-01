@@ -17,16 +17,11 @@ export async function get({params}) {
 
 		const { data: { conversation_id } } = await twitterClient.v2.singleTweet(params.tweet,{'tweet.fields': 'conversation_id'})
 
-		const { data: { 
-			data: tweets, 
-			includes, 
-			meta 
-		}} = await twitterClient.v2.search(`conversation_id:${conversation_id}`,{...options,max_results: 100});	
+		let jsConversation = await twitterClient.v2.search(`conversation_id:${conversation_id}`,{...options, max_results: 100});	
+		const jsTweets = await twitterClient.v2.search(`conversation_id:${conversation_id}`,{...options, max_results: 100});	
+		const tweets = jsConversation.tweets
+		const includes = jsConversation.data.includes
 
-		console.log(conversation_id)
-		// const initialTweet = includes.tweets.find( t => t.id === conversation_id )
-
-		// const { tweet: firstTweet, author} = await client.v2.singleTweet(conversation_id,options)
 		const { 
 			data: tweet, 
 			includes: { 
@@ -44,7 +39,7 @@ export async function get({params}) {
 			author,
 			tweets: [ tweet, ...thread ]
 				.map( t => ({ 
-					...tweet,
+					...t,
 					media: includes.media
 						?.filter( m => t.attachments && t.attachments.media_keys.includes(m.media_key) )
 				}))}
