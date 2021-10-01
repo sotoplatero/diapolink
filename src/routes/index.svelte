@@ -11,11 +11,13 @@
 </script>
 <svelte:head>
 	<meta property="og:title" content="DiapoLink - Create SlideShow Easily">
-    <meta property="og:image" content="https://cdn.statically.io/og/theme=dark/DiapoLink - Crea divertidas presentaciones desde la URL.jpg"  />
+    <meta property="og:image" content="https://diapo.link/img/back.jpg"  />
 
 	<!-- Twitter -->
 	<meta property="twitter:title" content="DiapoLink - Crea divertidas presentaciones desde la URL">
-    <meta property="twitter:image" content="https://cdn.statically.io/og/theme=dark/DiapoLink - Crea divertidas presentaciones desde la URL.jpg"  />
+    <meta property="twitter:image" content="https://diapo.link/img/back.jpg"  />
+    <meta property="twitter:site" content="@diapolink"  />
+    <meta property="twitter:user" content="@sotoplatero"  />
 </svelte:head>
 
 <article id="webslides" class="vertical">

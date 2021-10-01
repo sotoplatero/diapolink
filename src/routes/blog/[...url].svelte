@@ -39,8 +39,17 @@
 	})  	
 
 </script>
-	
-<article id="webslides" class="h-screen !overflow-y-hidden ">
+<svelte:head>
+	<meta property="og:title" content="{blog.title}">
+
+	<!-- Twitter -->
+	<meta property="twitter:title" content="{blog.title}">
+	{#if blog.image}
+	    <meta property="og:image" content="{blog.image}"  />
+	    <meta property="twitter:image" content="{blog.image}"  />
+	{/if}
+</svelte:head>	
+<article id="webslides" class="h-screen !overflow-y-hidden bg-black">
 
 	<section class="aligncenter h-screen">
 		<div class="wrap size-60">
