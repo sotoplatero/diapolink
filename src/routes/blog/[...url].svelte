@@ -1,13 +1,16 @@
 <script context="module">
-	// import formatSlide from '$lib/formatslide'	
-	// import getPattern from '$lib/pattern'
-	// import {bgs} from '$lib/const'
-	// import '$lib/random'
 
     export async function load({page, query, fetch}) {
 
     	// const theme = page.params.options
     	const res = await fetch(`/blog.json?url=${page.params.url}`)
+
+    	if (!res.ok) {
+			return {
+				status: res.status,
+				error: new Error(`Could not load ${page.params.url}`)
+			};    		
+    	}
     	const blog = await res.json()
 
 		// const pattern = getPattern()
@@ -20,15 +23,23 @@
     }	
 </script>
 <script>
+	import {onMount} from 'svelte'   
 	import Avatar from '$lib/components/avatar.svelte'
 	import Slide from '$lib/components/slide.svelte'
 	import '$lib/random'	
+
 	export let blog = {}
 	export let theme = ''
-	let emoji = [ '❤️','✨','👏','👌','👍','⭐'].random()
+	let ws
+	const emoji = [ '❤️','✨','👏','👌','👍','⭐'].random()
+
+	onMount(async () => {
+		await import('webslides')
+		ws = new WebSlides();
+	})  	
 
 </script>
-
+	
 <article id="webslides" class="h-screen !overflow-y-hidden ">
 
 	<section class="aligncenter h-screen">
@@ -63,5 +74,6 @@
 			<p class="text-intro line-clamp-3 sm:line-clamp-5">{post.excerpt}</p>
 		</Slide>
 	{/each}
+
 </article>
  

@@ -1,10 +1,11 @@
 <script>
-  import { goto } from '$app/navigation';  
+  import {goto} from '$app/navigation'
   let blog = ''
   $: url = `/blog/${ blog.replace(/^https?:\/\//i,'') }`
+
 </script>
-<article id="">
-  
+
+<article id="webslides">
   <section class="" style="">
 <!--     <span class="background-right-bottom" style="background-image:url('../static/images/iphone-hand.png')"></span> -->
     <div class="wrap size-40 aligncenter">
@@ -21,4 +22,5 @@
     </div>
     <!-- .end .wrap -->
   </section>
+
 </article>

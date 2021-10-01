@@ -18,11 +18,14 @@
 </script>
 <script>
 	import Slide from '$lib/components/slide.svelte'
+	import Article from '$lib/components/article.svelte'
 	export let tweets = []
 	export let author
 	const user_url = `https://twitter.com/${author.username}`
 </script>
-<article id="webslides" class="bg-apple h-screen !overflow-y-hidden ">
+<Article class="bg-apple h-screen !overflow-y-hidden ">
+	
+<!-- <article id="webslides" class="bg-apple h-screen !overflow-y-hidden "> -->
 	<section class="aligncenter">
 		<div class="wrap size-50">
 			<img src="{author.profile_image_url}" alt="{author.name}" class="avatar-64">
@@ -94,7 +97,7 @@
             </ul>
 		</Slide>
 	{/each}
-</article>
+</Article>
 
 <style>
 	.tweet-text{

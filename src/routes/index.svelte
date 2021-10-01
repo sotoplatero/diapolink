@@ -27,7 +27,7 @@
 		<div class="wrap aligncenter size-60">
 
 			<div class="content-center">
-				<p class="text-subtitle">Diapo.Link</p>				
+				<p class="text-subtitle">Diapo&bull;Link</p>				
 				<h1 ><strong>Create SlideShow Easily</strong></h1>
 				<p class="text-intro">
 					Don't waste time designed complex slides.
@@ -57,7 +57,7 @@
 					</a>
 				</div>
 				<div class="column">
-					<a href="/blog" class="button">
+					<a href="/thread" class="button">
 						Thread to SlideShow
 					</a>
 				</div>

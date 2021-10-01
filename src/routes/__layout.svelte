@@ -9,8 +9,6 @@
     import Footer from '$lib/ui/footer.svelte'
     // import 'webslides/static/css/webslides.css'
 
-
-
 </script>
 
 <svelte:head>
