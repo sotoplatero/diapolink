@@ -14,15 +14,16 @@
 		return {
 			props: { tweets, author }
 		}
-    }	
+  }	
 </script>
 <script>
 	import Slide from '$lib/components/slide.svelte'
 	import Article from '$lib/components/article.svelte'
 	export let tweets = []
-	export let author
+	export let author = {}
 	const user_url = `https://twitter.com/${author.username}`
 </script>
+
 <Article class="bg-apple h-screen !overflow-y-hidden ">
 	
 <!-- <article id="webslides" class="bg-apple h-screen !overflow-y-hidden "> -->
@@ -36,6 +37,7 @@
 			<p class="text-intro whitespace-pre-line">{@html author.description}</p>
 		</div>
 	</section>	
+
 	{#each tweets as tweet, index}
 		<Slide>
 			<p class="text-intro">
@@ -88,13 +90,13 @@
                 </a>
               </li>
             </ul> -->
-            <ul class="flexblock gallery">	
+<!--             <ul class="flexblock gallery">	
 			{#each tweet.media as media, index}
 				<li>
 					<img src="{media.url}" alt="">
 				</li>
 			{/each}
-            </ul>
+            </ul> -->
 		</Slide>
 	{/each}
 </Article>

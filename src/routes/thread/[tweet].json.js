@@ -1,26 +1,12 @@
-import Twitter from 'twitter-v2';
-// import tweetify from '$lib/render_entities'
-// import tweetToHTML from 'tweet-to-html';
+import TwitterApi from 'twitter-api-v2';
 
-const t = new Twitter({
-	bearer_token: import.meta.env.VITE_TWITTER_BEARER_TOKEN
-	  // consumer_key: import.meta.env.VITE_TWITTER_CONSUMER_KEY,
-	  // consumer_secret: import.meta.env.VITE_TWITTER_CONSUMER_SECRET,
-	  // access_token_key: import.meta.env.VITE_TWITTER_ACCESS_TOKEN,
-	  // access_token_secret: import.meta.env.VITE_TWITTER_ACCESS_SECRET,
-});
+const twitterClient = new TwitterApi(import.meta.env.VITE_TWITTER_BEARER_TOKEN);
 
 const options = { 
-		tweet: {
-			fields: 'author_id,conversation_id,created_at,in_reply_to_user_id,referenced_tweets,entities'
-		},
-		expansions:'author_id,in_reply_to_user_id,referenced_tweets.id,attachments.media_keys',
-		user: {
-			fields: 'name,username'
-		},
-		media: {
-			fields: 'duration_ms,height,media_key,preview_image_url,public_metrics,type,url,width,alt_text'
-		},		
+		'tweet.fields': 'author_id,conversation_id,created_at,in_reply_to_user_id,referenced_tweets,entities',
+		'expansions':'author_id,in_reply_to_user_id,referenced_tweets.id,attachments.media_keys',
+		'user.fields': 'name,username,description,profile_image_url,url',
+		'media.fields': 'duration_ms,height,media_key,preview_image_url,public_metrics,type,url,width,alt_text',
 	}
 
 /**
@@ -28,32 +14,39 @@ const options = {
  */
 export async function get({params}) {
 
-	const conversationId = await getConversationId(params.tweet)
 
-	const { data:tweets, includes, meta } = await t.get('tweets/search/recent', { 
-		...options,
-		query: `conversation_id: ${conversationId}`,
-		max_results: 100,
-	});
+		const { data: { conversation_id } } = await twitterClient.v2.singleTweet(params.tweet,{'tweet.fields': 'conversation_id'})
 
-	const initialTweet = includes.tweets.find( t => t.id === conversationId )
+		const { data: { 
+			data: tweets, 
+			includes, 
+			meta 
+		}} = await twitterClient.v2.search(`conversation_id:${conversation_id}`,options);	
 
-	const { tweet: firstTweet, author} = await getTweet(conversationId)
-	
-	const thread = tweets
-		.filter( t => t.in_reply_to_user_id === t.author_id ) 
-		// .map(t=>({...t,html: tweetToHTML.parse(t) 	}))
-		.reverse()
+		// const initialTweet = includes.tweets.find( t => t.id === conversation_id )
+
+		// const { tweet: firstTweet, author} = await client.v2.singleTweet(conversation_id,options)
+		const { 
+			data: tweet, 
+			includes: { 
+				users: [author] 
+			} 
+		} = await twitterClient.v2.singleTweet(conversation_id,options)
+
+		const thread = tweets
+			.filter( t => t.in_reply_to_user_id === t.author_id ) 
+			.reverse()
+
 
 	return {
 		body: {
 			author,
-			tweets: [ firstTweet, ...thread ]
-					.map( t => ({ 
-						...t,
-						media: includes.media
-							?.filter( m => t.attachments && t.attachments.media_keys.includes(m.media_key) )
-					}))}
+			tweets: [ tweet, ...thread ]
+				.map( tweet => ({ 
+					...tweet,
+					media: includes.media
+						?.filter( m => t.attachments && t.attachments.media_keys.includes(m.media_key) )
+				}))}
 	}
 
 }
@@ -72,11 +65,11 @@ async function getTweet(id) {
 	}
 }
 
-async function getConversationId(id){
+async function getconversation_id(id){
 	let tweet
 	const options = { 
-		ids: id,
-		tweet: { fields: 'conversation_id'},
+		'ids': id,
+		'tweet.fields': 'conversation_id',
 	}
 
 	try {
@@ -84,6 +77,5 @@ async function getConversationId(id){
 	} catch (e) {
 		return e
 	}
-
 	return tweet.data[0].conversation_id	
 }
