@@ -3,22 +3,25 @@
   let tweet = ''
   $: url = `/thread/${ tweet.split('/').pop().split('?')[0] }`
 </script>
-<article id="">
-  
-  <section class="" style="">
-<!--     <span class="background-right-bottom" style="background-image:url('../static/images/iphone-hand.png')"></span> -->
-    <div class="wrap size-40 aligncenter">
-        <h1>Thread to Slideshow</h1>
-        <p>Write some tweet url from thread to create and publish a slideshow with its tweets. 
-        </p>
-          <form on:submit={goto(url)}>
-            <input bind:value={tweet} type="text" placeholder="Type your url blog" class="text-gray-700">
-          </form>
-          <p>
-            
-          <a href={url} type="submit" tabindex="2" title="URL Blog" class="button"><strong>Publish ›</strong></a>
+<div class="">
+  <article class="h-screen w-2/5 mx-auto flex items-center " >
+    
+    <section class="" >
+  <!--     <span class="background-right-bottom" ></span> -->
+      <div class="wrap size-40 aligncenter text-center">
+          <h1 class="mb-2">Thread to Slideshow</h1>
+          <p >Write some tweet url from thread to create and publish a slideshow with its tweets. 
           </p>
-    </div>
-    <!-- .end .wrap -->
-  </section>
-</article>
+          <form on:submit={goto(url)} class="space-y-2 mt-6">
+            <input bind:value={tweet} type="text" placeholder="Type your url blog">
+            <button type="submit" tabindex="2" title="URL Blog" class="button">
+              Publish ›
+            </button>
+          </form>
+              
+      </div>
+      <!-- .end .wrap -->
+    </section>
+  </article>
+  
+</div>

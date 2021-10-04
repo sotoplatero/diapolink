@@ -31,6 +31,7 @@
 		"svelte": "^3.43.1",
 		"svelte-check": "^2.2.6",
 		"svelte-preprocess": "^4.9.7",
+		"swiper": "^7.0.7",
 		"tailwindcss": "^2.2.15",
 		"tldts": "^5.7.47",
 		"tslib": "^2.0.0",

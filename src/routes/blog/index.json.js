@@ -37,7 +37,7 @@ export async function get({query}) {
 		blog = {
 			title: feed.title,
 			description: feed.description ?? description,
-			url: feed.link,
+			link: feed.link,
 			domain: getDomain(rss),
 			image,
 			posts: feed.items
@@ -51,6 +51,7 @@ export async function get({query}) {
 						time: Math.floor( content.length / cpm ),
 						excerpt: (post.description || content).slice(0,280),
 						author: post.creator ?? creator,
+						image,
 					}
 				})
 			}

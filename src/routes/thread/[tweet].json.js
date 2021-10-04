@@ -7,6 +7,7 @@ const options = {
 		'expansions':'author_id,in_reply_to_user_id,referenced_tweets.id,attachments.media_keys',
 		'user.fields': 'name,username,description,profile_image_url,url',
 		'media.fields': 'duration_ms,height,media_key,preview_image_url,public_metrics,type,url,width,alt_text',
+
 	}
 
 /**
@@ -17,11 +18,10 @@ export async function get({params}) {
 
 		const { data: { conversation_id } } = await twitterClient.v2.singleTweet(params.tweet,{'tweet.fields': 'conversation_id'})
 
-		let jsConversation = await twitterClient.v2.search(`conversation_id:${conversation_id}`,{...options, max_results: 100});	
-		const jsTweets = await twitterClient.v2.search(`conversation_id:${conversation_id}`,{...options, max_results: 100});	
-		const tweets = jsConversation.tweets
-		const includes = jsConversation.data.includes
-
+		let jsConversation = await twitterClient.v2.search(`conversation_id:${conversation_id}`,options);	
+		const jsTweetLast = await jsConversation.fetchLast(1000)
+		const tweets = jsTweetLast.tweets
+		const includes = jsTweetLast.includes
 		const { 
 			data: tweet, 
 			includes: { 
