@@ -1,6 +1,6 @@
 <script>
     import "../app.css";
-    // import "../app.postcss";
+    import "../app.postcss";
 
     import { navigating } from '$app/stores';
     import { dev } from '$app/env';

@@ -21,7 +21,7 @@ export async function get({params}) {
 		const jsTweets = await twitterClient.v2.search(`conversation_id:${conversation_id}`,{...options, max_results: 100});	
 		const tweets = jsConversation.tweets
 		const includes = jsConversation.data.includes
-
+		console.log(tweets)
 		const { 
 			data: tweet, 
 			includes: { 

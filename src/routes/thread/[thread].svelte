@@ -17,37 +17,47 @@
   }	
 </script>
 <script>
+	import Meta from '$lib/components/meta.svelte'
 	import Slide from '$lib/components/slide.svelte'
 	import Article from '$lib/components/article.svelte'
 	export let tweets = []
 	export let author = {}
 	const user_url = `https://twitter.com/${author.username}`
+
+	'https://twitter.com/intent/tweet?in_reply_to=1443976651818377249'
 </script>
 
+<Meta 
+	title="Diapolink - Tread of {author.name}" 
+	author={author.username}
+	description={author.description}
+	url={user_url}
+/>
+	
 <Article class="bg-apple h-screen !overflow-y-hidden ">
 	
 <!-- <article id="webslides" class="bg-apple h-screen !overflow-y-hidden "> -->
 	<section class="aligncenter">
-		<div class="wrap size-50">
-			<img src="{author.profile_image_url}" alt="{author.name}" class="avatar-64">
-			<h2><a href="{user_url}"><strong>{@html author.name}</strong></a></h2>
-			<p class="text-intro ">
-				<span class="text-gray-500">@{author.username}</span>
-			</p>
-			<p class="text-intro whitespace-pre-line">{@html author.description}</p>
+		<div class="flex">
+			<img src="{author.profile_image_url}" alt="{author.name}" class="h-10 w-10 rounded-full overflow-hidden">
+			<div>
+				<h1><a href="{user_url}"><strong>{@html author.name}</strong></a></h1>
+				<p class="text-intro ">@{author.username}</p>
+			</div>
 		</div>
+		<p class="text-intro whitespace-pre-line">{@html author.description}</p>
 	</section>	
 
 	{#each tweets as tweet, index}
-		<Slide>
-			<p class="text-intro">
-				<img src="{author.profile_image_url}" alt="{author.name}" class="avatar-48">
-				<strong>{@html author.name}</strong>
-				<a href="{user_url}" target="_blank">
-					<span class="text-gray-500">@{author.username}</span>
-				</a >
-			</p>
-			<p class="text-intro tweet-text">{@html tweet.text}</p>
+		<Slide size="40">
+		<div class="flex">
+			<img src="{author.profile_image_url}" alt="{author.name}" class="h-12 w-12 rounded-full overflow-hidden">
+			<div>
+				<h1><a href="{user_url}"><strong>{@html author.name}</strong></a></h1>
+				<p class="text-intro ">@{author.username}</p>
+			</div>
+		</div>
+			<p class="tweet-text">{@html tweet.text}</p>
 <!-- <ul class="flexblock gallery">
               <li>
                 <a href="../demos/why-webslides.html" title="Why WebSlides?">
