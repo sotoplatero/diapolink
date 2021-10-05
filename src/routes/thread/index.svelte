@@ -12,7 +12,7 @@
           <h1 class="mb-2">Thread to Slideshow</h1>
           <p >Write some tweet url from thread to create and publish a slideshow with its tweets. 
           </p>
-          <form on:submit={goto(url)} class="space-y-2 mt-6">
+          <form on:submit|preventDefault={goto(url)} class="space-y-2 mt-6">
             <input bind:value={tweet} type="text" placeholder="Type your url blog">
             <button type="submit" tabindex="2" title="URL Blog" class="button">
               Publish ›
