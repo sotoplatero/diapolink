@@ -1,4 +1,5 @@
 import {TwitterApi} from 'twitter-api-v2';
+import twitter from 'twitter-text'
 
 const twitterClient = new TwitterApi(import.meta.env.VITE_TWITTER_BEARER_TOKEN);
 
@@ -7,6 +8,7 @@ const options = {
 		'expansions':'author_id,in_reply_to_user_id,referenced_tweets.id,attachments.media_keys',
 		'user.fields': 'name,username,description,profile_image_url,url',
 		'media.fields': 'duration_ms,height,media_key,preview_image_url,public_metrics,type,url,width,alt_text',
+
 	}
 
 /**
@@ -17,11 +19,10 @@ export async function get({params}) {
 
 		const { data: { conversation_id } } = await twitterClient.v2.singleTweet(params.tweet,{'tweet.fields': 'conversation_id'})
 
-		let jsConversation = await twitterClient.v2.search(`conversation_id:${conversation_id}`,{...options, max_results: 100});	
-		const jsTweets = await twitterClient.v2.search(`conversation_id:${conversation_id}`,{...options, max_results: 100});	
-		const tweets = jsConversation.tweets
-		const includes = jsConversation.data.includes
-		console.log(tweets)
+		let jsConversation = await twitterClient.v2.search(`conversation_id:${conversation_id}`,options);	
+		const jsTweetLast = await jsConversation.fetchLast(1000)
+		const tweets = jsTweetLast.tweets
+		const includes = jsTweetLast.includes
 		const { 
 			data: tweet, 
 			includes: { 
@@ -36,10 +37,14 @@ export async function get({params}) {
 
 	return {
 		body: {
-			author,
+			author: {
+				...author,
+				html: twitter.autoLink(author.description)
+			},
 			tweets: [ tweet, ...thread ]
 				.map( t => ({ 
 					...t,
+					html: twitter.autoLink(t.text),
 					media: includes.media
 						?.filter( m => t.attachments && t.attachments.media_keys.includes(m.media_key) )
 				}))}

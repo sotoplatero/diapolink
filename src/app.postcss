@@ -3,5 +3,27 @@
 @tailwind components;
 @tailwind utilities;
 
-h1{ @apply !text-lg sm:!text-3xl; }
-#navigation{ @apply absolute bottom-0 left-0 w-full text-center; }
+h1{ 
+	@apply text-3xl sm:text-5xl leading-normal font-semibold;
+}
+h2{
+	@apply text-2xl sm:text-4xl leading-normal;
+}
+a{ @apply text-blue-500 drop-shadow-lg; }
+p{ @apply text-lg ;}
+.slides{
+
+}
+.slide {
+
+}
+input{
+	@apply py-3 px-4 bg-white border focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md;
+}
+button {
+	@apply inline-flex justify-center py-3 px-6 border border-transparent shadow-sm font-medium rounded-md text-white font-bold bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
+}
+a.button {
+	@apply inline-flex justify-center py-3 px-6 border border-transparent hover:border-indigo-700
+}
+

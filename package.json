@@ -13,6 +13,7 @@
 	"devDependencies": {
 		"@sveltejs/adapter-vercel": "^1.0.0-next.30",
 		"@sveltejs/kit": "^1.0.0-next.178",
+		"@tailwindcss/aspect-ratio": "^0.3.0",
 		"@tailwindcss/line-clamp": "^0.2.1",
 		"@typescript-eslint/eslint-plugin": "^4.32.0",
 		"@typescript-eslint/parser": "^4.32.0",
@@ -31,6 +32,7 @@
 		"svelte": "^3.43.1",
 		"svelte-check": "^2.2.6",
 		"svelte-preprocess": "^4.9.7",
+		"swiper": "^7.0.7",
 		"tailwindcss": "^2.2.15",
 		"tldts": "^5.7.47",
 		"tslib": "^2.0.0",

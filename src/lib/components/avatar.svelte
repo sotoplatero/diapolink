@@ -1,11 +1,11 @@
 <script>
-	export let username = ''
-	export let size = '48'
+	export let src = ''
+	export let alt = ''
+	export {_class as class}
+	let _class
 
-	$: src = /^@/.test(username) 
-		? `https://unavatar.io/twitter/${username}` 
-		: `https://ui-avatars.com/api/?name=${encodeURIComponent(username)}&bold=true`
+	$: src = src ?? `https://ui-avatars.com/api/?name=${encodeURIComponent(username)}&bold=true`
 
 </script>
 
-<img src="{src}" class="avatar-{size}">
+<img src="{src}" class="rounded-full overflow-hidden {_class}">

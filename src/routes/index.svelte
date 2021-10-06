@@ -1,14 +1,10 @@
 
 <script>
-    import {onMount} from 'svelte'	
-    let ws
-
-    onMount(async () => {
-		await import('webslides')
-		ws = new WebSlides();
-	})	
+	import Slides from '$lib/components/Slides.svelte'
+	import Slide from '$lib/components/Slide.svelte'
 
 </script>
+
 <svelte:head>
 	<meta property="og:title" content="DiapoLink - Create SlideShow Easily">
     <meta property="og:image" content="https://diapo.link/img/back.jpg"  />
@@ -20,36 +16,33 @@
     <meta property="twitter:user" content="@sotoplatero"  />
 </svelte:head>
 
-<article id="webslides" class="vertical">
+<Slides >
 
-	<section class="bg-black">
-		<span class="background dark" style="background-image:url('/img/back.jpg')"></span>
+	<Slide class="">
+		<div class="text-center">
 
-		<!-- <span class="background dark" style="background-image:url('https://www.freepik.com/free-photo/rocks-stacked-sea_925643.htm#page=1&query=calm&position=0')"></span>		 -->
-		<div class="wrap aligncenter size-60">
-
-			<div class="content-center">
-				<p class="text-subtitle">Diapo&bull;Link</p>				
-				<h1 ><strong>Create SlideShow Easily</strong></h1>
-				<p class="text-intro">
-					Don't waste time designed complex slides.
-				</p>
-				<div class="grid">
-					<div class="column">
-						<button on:click={ ()=>ws.goNext() } class="button" title="Start DiapoLink">
-			                Start &darr;
-				        </button>
-					</div>
-					<div class="column">
-				        <a href="https://twitter.com/intent/tweet?text=DiapoLink - Create SlideShow Easily&url=" class="button ghost"><strong>TWEET</strong></a>
-					</div>
+			<p class="uppercase font-light tracking-wider text-2xl">
+				Diapo&bull;Link
+			</p>				
+			<h1 >Create SlideShow Easily</h1>
+			<p class="text-2xl text-gray-600 mt-4">
+				Don't waste time designed complex slides.
+			</p>
+			<div class="flex justify-center space-x-6 mt-8">
+				<div class="column">
+					<button class="button" title="Start DiapoLink">
+		                Start &darr;
+			        </button>
 				</div>
-				
+				<div class="column">
+			        <a href="https://twitter.com/intent/tweet?text=DiapoLink - Create SlideShow Easily&url=" class="button text-indigo-700"><strong>TWEET</strong></a>
+				</div>
 			</div>
+			
 		</div>		
-	</section>
+	</Slide>
 
-	<section class="bg-apple">
+	<Slide class="bg-apple">
 		<div class="wrap size-40">
 			<h2 class="text-landing aligncenter">Create SlideShow Now</h2>
 			<div class="grid">
@@ -65,59 +58,9 @@
 				</div>
 			</div>
 		</div>
-	</section>
+	</Slide>
 
-<!-- 
-	<section class="aligncenter ">
-		<div class="wrap">
-			<h2><strong>Why use DiapoLink?</strong></h2>
-		</div>
-	</section>
-
-
-	<section>
-		<div class="wrap">
-			<div class="grid vertical-align">
-				<div class="column">
-					<img src="/img/save-money.svg">	
-				</div>
-				<div class="column">
-					<h2>Free</h2>
-					<h3>Create endless presentations without paying a dime</h3>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<section class="flex items-center space-x-12">
-		<div class="wrap">
-			<div class="grid vertical-align">			
-				<div class="column">
-					<img src="/img/meditation.svg">	
-				</div>
-				<div class="column">
-					<h2>Easy</h2>
-					<h3>does not require user registration just use it</h3>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<section class="flex items-center space-x-28">
-		<div class="wrap">
-			<div class="grid vertical-align">			
-				<div class="column">
-					<img src="/img/time-managment.svg">	
-				</div>
-				<div class="column">
-					<h2>Don't waste time</h2>
-					<p class="text-intro">If you do not like to waste time designing a simple presentation, choosing colors, looking for Diapolink images is what you need</p>
-				</div>
-			</div>
-		</div>
-	</section>
- -->
-</article>
+</Slides>
 
 
 

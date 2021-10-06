@@ -2,9 +2,7 @@
 
     export async function load({page, query, fetch}) {
 
-    	// const theme = page.params.options
     	const res = await fetch(`/blog.json?url=${page.params.url}`)
-
     	if (!res.ok) {
 			return {
 				status: res.status,
@@ -13,9 +11,6 @@
     	}
     	const blog = await res.json()
 
-		// const pattern = getPattern()
-		// const bg = bgs.random()
-
 		return {
 			props: { blog }
 		}
@@ -23,22 +18,16 @@
     }	
 </script>
 <script>
-	import {onMount} from 'svelte'   
+	import Slides from '$lib/components/Slides.svelte'
+	import Slide from '$lib/components/Slide.svelte'
 	import Avatar from '$lib/components/avatar.svelte'
-	import Slide from '$lib/components/slide.svelte'
 	import '$lib/random'	
 
 	export let blog = {}
-	export let theme = ''
-	let ws
 	const emoji = [ '❤️','✨','👏','👌','👍','⭐'].random()
 
-	onMount(async () => {
-		await import('webslides')
-		ws = new WebSlides();
-	})  	
-
 </script>
+
 <svelte:head>
 	<meta property="og:title" content="{blog.title}">
 
@@ -49,40 +38,48 @@
 	    <meta property="twitter:image" content="{blog.image}"  />
 	{/if}
 </svelte:head>	
-<article id="webslides" class="h-screen !overflow-y-hidden bg-black">
 
-	<section class="aligncenter h-screen">
-		<div class="wrap size-60">
-			<img src="https://logo.clearbit.com/{blog.domain}" class="avatar-58" alt="Logo Blog">
-			<h1>{blog.title}</h1>	
-			<p class="text-subtitle">
+<Slides class="text-white bg-gradient-to-b from-black to-gray-800">
+
+	<Slide class="text-center" >
+		<div class="relative z-10">
+			
+			<img src="https://logo.clearbit.com/{blog.domain}" class="h-28 w-28 mx-auto rounded-full" alt="Logo Blog">
+			<a href="{blog.link}" class="space-y-4 block">
+				<h1 class="leading-normal">{blog.title}</h1>	
+			</a>
+			<p class="uppercase text-xl mt-2">
 				{blog.domain}
 			</p>			
 			{#if blog.description}
-				<p class="text-intro">{@html blog.description}</p>
+				<p class="text-lg">{@html blog.description}</p>
 			{/if}
-			<p class="text-symbols">{ emoji + emoji + emoji }</p>			
+			<p class="text-lg mt-6">{ emoji + emoji + emoji }</p>			
+			
 		</div>
-	</section>
+		<div class="fixed w-full h-full top-0 left-0 z-0 bg-gray-800 bg-opacity-75 bg-cover bg-center" ></div>
+	</Slide>
 
 	{#each blog.posts as post, index}
-		<Slide >
-			<p class="text-subtitle">
-				<img src="https://logo.clearbit.com/{blog.domain}" class="avatar-40">
-				{blog.domain}
-			</p>
-			<h2><a href="{post.url}"><strong>{post.title}</strong></a></h2>
-			<p>
+		<Slide style="background-image: url(/blog/i/{ post.url.replace(/https?:\/\//,'')});">
+			<div class="flex items-center">
+				<img src="https://logo.clearbit.com/{blog.domain}" class="h-10 w-10 rounded-full mr-2">
+				<span class="uppercase">{blog.domain}</span>	
+			</div>
+			<a href="{post.url}" target="_blank" rel="nofollower noopener">
+				<h2 class="leading-tight sm:leading-snug">
+					<strong>{post.title}</strong>
+				</h2>
+			</a>
+			<p class="mb-4 text-gray-500 text-normal">
 				{@html post.author}
 				&bull;
 				{post.date} 
-				{#if post.time}
-					&bull; {post.time} minutes
-				{/if}
 			</p>
 			<p class="text-intro line-clamp-3 sm:line-clamp-5">{post.excerpt}</p>
+			
 		</Slide>
 	{/each}
 
-</article>
+</Slides>
  

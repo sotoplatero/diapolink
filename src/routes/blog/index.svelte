@@ -5,19 +5,19 @@
 
 </script>
 
-<article id="webslides">
-  <section class="" style="">
+<article id="webslides" class="h-screen w-2/5 mx-auto flex items-center ">
+  <section class="text-center" style="">
 <!--     <span class="background-right-bottom" style="background-image:url('../static/images/iphone-hand.png')"></span> -->
     <div class="wrap size-40 aligncenter">
         <h1>Blog to Slideshow</h1>
         <p class="text-intro">Write your url blog to create and publish a slideshow with its posts. 
         </p>
-          <form on:submit={goto(url)}>
+          <form on:submit|preventDefault={goto(url)} class="space-y-2 mt-6">
             <input bind:value={blog} type="text" placeholder="Type your url blog" required="" class="">
+            <button type="submit" tabindex="2" title="URL Blog" class="button"><strong>Publish ›</strong></button>
           </form>
           <p>
             
-          <a href={url} type="submit" tabindex="2" title="URL Blog" class="button"><strong>Publish ›</strong></a>
           </p>
     </div>
     <!-- .end .wrap -->
