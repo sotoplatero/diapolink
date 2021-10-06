@@ -19,7 +19,7 @@
 	{direction}
 	on:slideChange={() => console.log('slide change')}
 	on:swiper={(e) => console.log(e.detail[0])}
-	class="min-h-screen w-full {_class}"
+	class="min-h-screen h-screen w-full {_class}"
 >
 	<slot></slot>
 </Swiper>

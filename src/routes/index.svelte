@@ -16,9 +16,9 @@
     <meta property="twitter:user" content="@sotoplatero"  />
 </svelte:head>
 
-<Slides >
+<Slides direction={'vertical'}>
 
-	<Slide class="">
+	<Slide class="" >
 		<div class="text-center">
 
 			<p class="uppercase font-light tracking-wider text-2xl">
@@ -42,20 +42,18 @@
 		</div>		
 	</Slide>
 
-	<Slide class="bg-apple">
-		<div class="wrap size-40">
-			<h2 class="text-landing aligncenter">Create SlideShow Now</h2>
-			<div class="grid">
-				<div class="column">
-					<a href="/blog" class="button">
-						Blog to SlideShow
-					</a>
-				</div>
-				<div class="column">
-					<a href="/thread" class="button">
-						Thread to SlideShow
-					</a>
-				</div>
+	<Slide class="text-center">
+		<h2 class="text-5xl leading-snug font-bold">Create <br> SlideShow <br> Now</h2>
+		<div class="flex items-center">
+			<div class="column">
+				<a href="/blog" class="button">
+					<button>Blog to SlideShow</button>
+				</a>
+			</div>
+			<div class="column">
+				<a href="/thread" class="button">
+					<button>Thread to SlideShow</button>
+				</a>
 			</div>
 		</div>
 	</Slide>
