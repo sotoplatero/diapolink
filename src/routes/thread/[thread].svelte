@@ -20,7 +20,7 @@
 	import Meta from '$lib/components/meta.svelte'
 	import Slides from '$lib/components/Slides.svelte'
 	import Slide from '$lib/components/slide.svelte'
-	import Avatar from '$lib/components/Avatar.svelte'
+	import Avatar from '$lib/components/avatar.svelte'
 	export let tweets = []
 	export let author = {}
 	const user_url = `https://twitter.com/${author.username}`
