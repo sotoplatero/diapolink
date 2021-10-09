@@ -19,7 +19,7 @@
 <script>
 	import Meta from '$lib/components/meta.svelte'
 	import Slides from '$lib/components/Slides.svelte'
-	import Slide from '$lib/components/Slide.svelte'
+	import Slide from '$lib/components/slide.svelte'
 	import Avatar from '$lib/components/Avatar.svelte'
 	export let tweets = []
 	export let author = {}

@@ -19,7 +19,7 @@
 </script>
 <script>
 	import Slides from '$lib/components/Slides.svelte'
-	import Slide from '$lib/components/Slide.svelte'
+	import Slide from '$lib/components/slide.svelte'
 	import Avatar from '$lib/components/avatar.svelte'
 	import '$lib/random'	
 

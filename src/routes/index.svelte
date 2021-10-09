@@ -1,7 +1,7 @@
 
 <script>
 	import Slides from '$lib/components/Slides.svelte'
-	import Slide from '$lib/components/Slide.svelte'
+	import Slide from '$lib/components/slide.svelte'
 
 </script>
 
