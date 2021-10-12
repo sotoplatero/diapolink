@@ -29,9 +29,9 @@
 </script>
 
 <Meta 
-	title="Diapolink - Tread of {author.name}" 
+	title="Diapolink - Thread of {author.name}" 
 	author={author.username}
-	description={author.description}
+	description={tweets[0].text}
 	url={user_url}
 />
 
@@ -62,7 +62,7 @@
 					</div>
 				</a >
 			</div>
-			<p class="sm:text-2xl mt-4 whitespace-pre-line">
+			<p class="sm:text-2xl mt-4 !leading-tight whitespace-pre-line">
 				{@html tweet.html}
 			</p>
 
