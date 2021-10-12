@@ -6,7 +6,7 @@ const tc = new TwitterApi(import.meta.env.VITE_TWITTER_BEARER_TOKEN);
 const options = { 
 		'tweet.fields': 'author_id,conversation_id,in_reply_to_user_id,entities',
 		'expansions':'author_id,in_reply_to_user_id,referenced_tweets.id,attachments.media_keys',
-		'user.fields': 'name,username,description,profile_image_url,url',
+		'user.fields': 'name,username,description,profile_image_url',
 		'media.fields': 'media_key,preview_image_url,type,url,alt_text',
 	}
 
