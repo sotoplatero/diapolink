@@ -51,7 +51,7 @@ export async function get({params}) {
 					u.id == t.author_id   
 				) 
 			}))
-			.filter((t,i)=>i<10)
+			// .filter((t,i)=>i<10)
 
 	return {
 		body: {	tweets } 

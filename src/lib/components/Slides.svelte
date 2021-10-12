@@ -1,9 +1,10 @@
 <script>
 	import { Swiper } from 'swiper/svelte';
-	import { Mousewheel,Pagination } from 'swiper';
+	import { Mousewheel,Pagination,Lazy } from 'swiper';
 	import 'swiper/css';
-	import 'swiper/css/mousewheel';	
+	import 'swiper/css/mousewheel'
 	import "swiper/css/pagination"
+	import "swiper/css/lazy"
 
 	export let direction = 'horizontal'
 	export let pagination = true
@@ -13,11 +14,13 @@
 
 </script>
 <Swiper
-	modules={[ Mousewheel, Pagination ]}
+	modules={[ Mousewheel, Pagination, Lazy ]}
 	mousewheel={true}
 	{pagination}
 	loop={true}
 	{direction}
+	preloadImages={false}
+	lazy={true}
 	on:slideChange={() => console.log('slide change')}
 	on:swiper={(e) => console.log(e.detail[0])}
 	class="min-h-screen h-screen w-full {_class}"

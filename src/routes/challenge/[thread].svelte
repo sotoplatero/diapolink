@@ -31,13 +31,13 @@
 	url={challenge.author.url}
 />
 
-<Slides class="h-screen !overflow-y-hidden bg-gray-800 text-white" pagination={false}>
+<Slides class="h-screen !overflow-y-hidden bg-gray-800 text-white" pagination='{{ "type": "fraction"}}'>
 	<SwiperSlide class="flex items-center">
 	     <div class="w-2/5 mx-auto ">
 	     	<div class="relative">
 	     		
 				<div class="aspect-w-4 aspect-h-3 mt-2 ">
-					<img src="{challenge.media.url || challenge.media.preview_image_url}" alt="" class="w-full object-cover rounded-lg">
+					<img src="{challenge.media.url || challenge.media.preview_image_url}" alt="" class="w-full object-cover rounded-lg" loading="lazy">
 				</div>
 		     	
 		     	<div class="mt-2">
@@ -66,7 +66,8 @@
 		     	<div class="relative">
 		     		
 					<div class="aspect-w-4 aspect-h-3 mt-2 ">
-						<img src="{tweet.media.url || tweet.media.preview_image_url}" alt="" class="w-full object-cover rounded-lg">
+						<img data-src="{tweet.media.url || tweet.media.preview_image_url}" alt="" class="w-full object-cover rounded-lg swiper-lazy" src="data:image/gif;base64,R0lGODlhAQABAPAAAAAAAAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" >
+						<div class="swiper-lazy-preloader"></div>
 					</div>
 			     	
 			     	<div class="mt-2">
