@@ -27,7 +27,7 @@
 <Meta 
 	title="Diapolink - Challenge of {challenge.author.name}" 
 	author={challenge.author.username}
-	description={challenge.text}
+	description={challenge.text.replace(/\n/g,'')}
 	image={challenge.media.url}
 	url='https://diapo.link/challenge/{thread}'
 />
