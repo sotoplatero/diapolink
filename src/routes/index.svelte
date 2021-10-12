@@ -29,12 +29,12 @@
 				Don't waste time designed complex slides.
 			</p>
 			<div class="flex justify-center space-x-6 mt-8">
-				<div class="column">
+				<div class="">
 					<button class="button" title="Start DiapoLink">
 		                Start &darr;
 			        </button>
 				</div>
-				<div class="column">
+				<div class="">
 			        <a href="https://twitter.com/intent/tweet?text=DiapoLink - Create SlideShow Easily&url=" class="button text-indigo-700"><strong>TWEET</strong></a>
 				</div>
 			</div>
@@ -44,17 +44,16 @@
 
 	<Slide class="text-center">
 		<h2 class="text-5xl leading-snug font-bold">Create <br> SlideShow <br> Now</h2>
-		<div class="flex items-center">
-			<div class="column">
-				<a href="/blog" class="button">
-					<button>Blog to SlideShow</button>
-				</a>
-			</div>
-			<div class="column">
-				<a href="/thread" class="button">
-					<button>Thread to SlideShow</button>
-				</a>
-			</div>
+		<div class="grid grid-cols-3 gap-2">
+			<a href="/blog" >
+				<button class="w-full" >Blog</button>
+			</a>
+			<a href="/thread" >
+				<button class="w-full">Thread</button>
+			</a>
+			<a href="/challenge" >
+				<button class="w-full">Challenge</button>
+			</a>
 		</div>
 	</Slide>
 
