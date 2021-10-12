@@ -10,7 +10,7 @@
     	const {tweets} = await res.json()
 		const pattern = getPattern()
 		return {
-			props: { tweets }
+			props: { tweets, thread: page.params.thread }
 		}
   }	
 </script>
@@ -20,14 +20,16 @@
 	import Slides from '$lib/components/Slides.svelte'
 	import Avatar from '$lib/components/avatar.svelte'
 	export let tweets = []
+	export let thread
 	let challenge = tweets[0]
 </script>
 
 <Meta 
-	title="Diapolink - Tread of {challenge.author.name}" 
+	title="Diapolink - Challenge of {challenge.author.name}" 
 	author={challenge.author.username}
-	description={challenge.author.description}
-	url={challenge.author.url}
+	description={challenge.text}
+	image={challenge.media.preview_image_url}
+	url='https://diapo.link/challenge/{thread}'
 />
 
 <Slides class="h-screen !overflow-y-hidden bg-gray-800 text-white" pagination='{{ "type": "fraction"}}'>
