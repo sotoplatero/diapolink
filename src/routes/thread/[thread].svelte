@@ -35,7 +35,9 @@
 	url={user_url}
 />
 
-<Slides class="bg-[#15202B] h-screen !overflow-y-hidden text-white">
+<Slides class="bg-[#15202B] h-screen !overflow-y-hidden text-white" pagination='{{
+  "type": "fraction"
+}}'>
 	
 <!-- <Slides id="webslides" class="bg-apple h-screen !overflow-y-hidden "> -->
 	<Slide class="text-center">
