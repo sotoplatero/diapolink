@@ -32,16 +32,16 @@
 	url='https://diapo.link/challenge/{thread}'
 />
 
-<Slides class="h-screen !overflow-y-hidden bg-[#15202B] text-white" pagination='{{ "type": "fraction"}}'>
-	<SwiperSlide class="flex items-center">
+<Slides class="!overflow-y-hidden bg-[#15202B] text-white" pagination='{{ "type": "fraction"}}'>
+	<SwiperSlide class="h-screen flex items-center">
 	     <div class="w-full sm:w-2/5 mx-auto px-2">
 	     	<div class="relative">
 	     		
-				<div class="aspect-w-4 aspect-h-3 mt-2 ">
+				<div class="aspect-w-4 aspect-h-3">
 					<img src="{challenge.media.url || challenge.media.preview_image_url}" alt="" class="w-full object-cover rounded-lg" loading="lazy">
 				</div>
 		     	
-		     	<div class="mt-2">
+		     	<div class="mt-4">
 					<div class="flex items-center justify-center">
 						<Avatar src="{challenge.author.profile_image_url}" alt="{challenge.author.name}" class="h-6 w-6 mr-2"/>	
 						<a href="{challenge.author.url}" target="_blank" class="text-sm">
@@ -62,7 +62,7 @@
 	</SwiperSlide>	
 
 	{#each tweets.slice(1) as tweet, index}
-		<SwiperSlide class="flex items-center" >
+		<SwiperSlide class="h-screen flex items-center" >
 		     <div class="w-full sm:w-2/5 mx-auto px-2">
 		     	<div class="relative">
 		     		
@@ -71,10 +71,14 @@
 						<div class="swiper-lazy-preloader"></div>
 					</div>
 			     	
-			     	<div class="mt-2">
+			     	<div class="mt-4">
 						<div class="flex items-center justify-center">
-							<Avatar src="{tweet.author.profile_image_url}" alt="{tweet.author.name}" class="h-6 w-6 mr-2"/>	
-							<a href="{tweet.author.url}" target="_blank" class="text-sm">
+							<Avatar 
+								src="{tweet.author.profile_image_url}" 
+								alt="{tweet.author.name}" 
+								class="h-6 w-6 mr-2 "
+							/>	
+							<a href="{tweet.author.url}" target="_blank" class="text-sm ">
 								<div class="font-semibold">
 									{@html tweet.author.name}
 									<span class="text-gray-500">
