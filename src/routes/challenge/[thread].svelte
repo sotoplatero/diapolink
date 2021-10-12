@@ -21,7 +21,6 @@
 	import Avatar from '$lib/components/avatar.svelte'
 	export let tweets = []
 	let challenge = tweets[0]
-	$: console.log(challenge)
 </script>
 
 <Meta 
