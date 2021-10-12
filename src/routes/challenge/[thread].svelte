@@ -32,9 +32,9 @@
 	url='https://diapo.link/challenge/{thread}'
 />
 
-<Slides class="h-screen !overflow-y-hidden bg-gray-800 text-white" pagination='{{ "type": "fraction"}}'>
+<Slides class="h-screen !overflow-y-hidden bg-[#15202B] text-white" pagination='{{ "type": "fraction"}}'>
 	<SwiperSlide class="flex items-center">
-	     <div class="w-2/5 mx-auto ">
+	     <div class="w-full sm:w-2/5 mx-auto px-2">
 	     	<div class="relative">
 	     		
 				<div class="aspect-w-4 aspect-h-3 mt-2 ">
@@ -63,7 +63,7 @@
 
 	{#each tweets.slice(1) as tweet, index}
 		<SwiperSlide class="flex items-center" >
-		     <div class="w-2/5 mx-auto ">
+		     <div class="w-full sm:w-2/5 mx-auto px-2">
 		     	<div class="relative">
 		     		
 					<div class="aspect-w-4 aspect-h-3 mt-2 ">
