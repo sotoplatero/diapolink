@@ -28,7 +28,7 @@
 	title="Diapolink - Challenge of {challenge.author.name}" 
 	author={challenge.author.username}
 	description={challenge.text}
-	image={challenge.media.preview_image_url}
+	image={challenge.media.url}
 	url='https://diapo.link/challenge/{thread}'
 />
 
