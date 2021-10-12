@@ -6,6 +6,7 @@
 	import "swiper/css/pagination"
 
 	export let direction = 'horizontal'
+	export let pagination = true
 	export {_class as class}
 
 	let _class
@@ -14,7 +15,7 @@
 <Swiper
 	modules={[ Mousewheel, Pagination ]}
 	mousewheel={true}
-	pagination={true}
+	{pagination}
 	loop={true}
 	{direction}
 	on:slideChange={() => console.log('slide change')}
