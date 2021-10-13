@@ -29,15 +29,13 @@
 </script>
 
 <Meta 
-	title="Diapolink - Tread of {author.name}" 
+	title="Diapolink - Thread of {author.name}" 
 	author={author.username}
-	description={author.description}
+	description={tweets[0].text}
 	url={user_url}
 />
 
-<Slides class="bg-[#15202B] h-screen !overflow-y-hidden text-white" pagination='{{
-  "type": "fraction"
-}}'>
+<Slides class="bg-[#15202B] h-screen !overflow-y-hidden text-white" pagination='{{ "type": "fraction"}}'>
 	
 <!-- <Slides id="webslides" class="bg-apple h-screen !overflow-y-hidden "> -->
 	<Slide class="text-center">
@@ -64,7 +62,7 @@
 					</div>
 				</a >
 			</div>
-			<p class="sm:text-2xl mt-4 whitespace-pre-line">
+			<p class="sm:text-2xl mt-4 !leading-tight whitespace-pre-line">
 				{@html tweet.html}
 			</p>
 

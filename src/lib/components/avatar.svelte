@@ -8,4 +8,4 @@
 
 </script>
 
-<img src="{src}" class="rounded-full overflow-hidden {_class}">
+<img src="{src}" class="rounded-full overflow-hidden flex-shrink-0 {_class}">

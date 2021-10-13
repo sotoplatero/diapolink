@@ -10,7 +10,7 @@
     	const {tweets} = await res.json()
 		const pattern = getPattern()
 		return {
-			props: { tweets }
+			props: { tweets, thread: page.params.thread }
 		}
   }	
 </script>
@@ -20,30 +20,32 @@
 	import Slides from '$lib/components/Slides.svelte'
 	import Avatar from '$lib/components/avatar.svelte'
 	export let tweets = []
+	export let thread
 	let challenge = tweets[0]
-	$: console.log(challenge)
+
 </script>
 
 <Meta 
-	title="Diapolink - Tread of {challenge.author.name}" 
-	author={challenge.author.username}
-	description={challenge.author.description}
-	url={challenge.author.url}
+	title="Diapolink - Challenge of {challenge.author.name}" 
+	author="{challenge.author.username}"
+	description={challenge.text.replace(/\n/g,'')}
+	image={challenge.media.url}
+	url='https://diapo.link/challenge/{thread}'
 />
 
-<Slides class="h-screen !overflow-y-hidden bg-gray-800 text-white" pagination={false}>
-	<SwiperSlide class="flex items-center">
-	     <div class="w-2/5 mx-auto ">
+<Slides class="!overflow-y-hidden bg-[#15202B] text-white" pagination='{{ "type": "fraction"}}'>
+	<SwiperSlide class="max-h-screen h-screen flex items-center">
+	     <div class="w-full sm:w-2/5 mx-auto px-2">
 	     	<div class="relative">
 	     		
-				<div class="aspect-w-4 aspect-h-3 mt-2 ">
-					<img src="{challenge.media.url || challenge.media.preview_image_url}" alt="" class="w-full object-cover rounded-lg">
+				<div class="aspect-w-4 aspect-h-3">
+					<img src="{challenge.media.url || challenge.media.preview_image_url}" alt="" class="w-full object-cover rounded-lg" loading="lazy">
 				</div>
 		     	
-		     	<div class="mt-2">
+		     	<div class="mt-4">
 					<div class="flex items-center justify-center">
 						<Avatar src="{challenge.author.profile_image_url}" alt="{challenge.author.name}" class="h-6 w-6 mr-2"/>	
-						<a href="{challenge.author.url}" target="_blank" class="text-sm">
+						<a href="https://twitter.com/{challenge.author.username}" target="_blank" class="text-sm">
 							<div class="font-semibold">
 								{@html challenge.author.name}
 								<span class="text-gray-500">
@@ -61,26 +63,31 @@
 	</SwiperSlide>	
 
 	{#each tweets.slice(1) as tweet, index}
-		<SwiperSlide class="flex items-center" >
-		     <div class="w-2/5 mx-auto ">
+		<SwiperSlide class="max-h-screen h-screen flex items-center" >
+		     <div class="w-full sm:w-2/5 mx-auto px-2">
 		     	<div class="relative">
 		     		
 					<div class="aspect-w-4 aspect-h-3 mt-2 ">
-						<img src="{tweet.media.url || tweet.media.preview_image_url}" alt="" class="w-full object-cover rounded-lg">
+						<img data-src="{tweet.media.url || tweet.media.preview_image_url}" alt="" class="w-full object-cover rounded-lg swiper-lazy" src="data:image/gif;base64,R0lGODlhAQABAPAAAAAAAAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" >
+						<div class="swiper-lazy-preloader"></div>
 					</div>
 			     	
-			     	<div class="mt-2">
+			     	<div class="mt-4">
+							<a href="https://twitter.com/{tweet.author.username}" target="_blank" class="text-sm ">
 						<div class="flex items-center justify-center">
-							<Avatar src="{tweet.author.profile_image_url}" alt="{tweet.author.name}" class="h-6 w-6 mr-2"/>	
-							<a href="{tweet.author.url}" target="_blank" class="text-sm">
-								<div class="font-semibold">
+							<Avatar 
+								src="{tweet.author.profile_image_url}" 
+								alt="{tweet.author.name}" 
+								class="h-8 w-8 mr-2 "
+							/>	
+								<div class="font-semibold ml-1">
 									{@html tweet.author.name}
-									<span class="text-gray-500">
+									<div class="text-gray-500">
 											@{tweet.author.username}
-									</span>
+									</div>
 								</div>
-							</a >
 						</div>
+							</a >
 <!-- 						<p class="mt-2 text-base">
 							{ tweet.text}
 						</p> -->
