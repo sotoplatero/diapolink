@@ -1,7 +1,9 @@
 <script>
   import { goto } from '$app/navigation';  
   let tweet = ''
-  $: url = `/challenge/${ tweet.split('/').pop().split('?')[0] }`
+  // $: url = `/challenge/tweet/${ tweet.split('/').pop().split('?')[0] }`
+  $: tweet_id = tweet.split('/').pop().split('?')[0]
+
 </script>
 <div class="">
   <article class="h-screen w-2/5 mx-auto flex items-center " >
@@ -12,7 +14,11 @@
           <h1 class="mb-2">Challenge to Slideshow</h1>
           <p >Type the url of some'a tweet within the challenge (thread) to create a slideshow with the images of the responses. 
           </p>
-          <form on:submit|preventDefault={goto(url)} class="space-y-2 mt-6">
+          <form 
+            action="/challenge/tweet/{tweet_id}" 
+            method="POST" 
+            class="space-y-2 mt-6"
+          >
             <input bind:value={tweet} type="text" placeholder="Type your url tweet">
             <button type="submit" tabindex="2" title="URL Blog" class="button">
               Publish ›

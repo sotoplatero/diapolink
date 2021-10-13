@@ -17,11 +17,13 @@ const options = {
 export async function get({params}) {
 
 
-		const { data: { conversation_id } } = await twitterClient.v2.singleTweet(params.tweet,{'tweet.fields': 'conversation_id'})
+		// const { data: { conversation_id } } = await twitterClient.v2.singleTweet(params.tweet,{'tweet.fields': 'conversation_id'})
+		const conversation_id = params.conversation_id
 
 		let jsConversation = await twitterClient.v2.search(`conversation_id:${conversation_id}`,options);	
 		const jsTweetLast = await jsConversation.fetchLast(1000)
 		const tweets = jsTweetLast.tweets
+		console.log(jsConversation)
 		const includes = jsTweetLast.includes
 		const { 
 			data: tweet, 

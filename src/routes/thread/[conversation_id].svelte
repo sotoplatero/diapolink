@@ -3,7 +3,7 @@
 
     export async function load({page, fetch}) {
 
-    	const res = await fetch(`/thread/${page.params.thread}.json`)
+    	const res = await fetch(`/thread/${page.params.conversation_id}.json`)
     	if (!res.ok) {
     		return null
     	}
