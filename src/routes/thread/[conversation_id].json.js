@@ -20,19 +20,24 @@ export async function get({params}) {
 		const conversation_id = params.conversation_id
 		const { data: tweet, includes: { users: [author]} } = await twitterClient.v2.singleTweet(conversation_id,options)
 
-		let jsConversation = await twitterClient.v2.userTimeline(author.id,{ since_id: conversation_id });	
+		let endTime = new Date(tweet.created_at)
+		endTime.setDate(endTime.getDate() + 1)
+
+		let jsConversation = await twitterClient.v2.userTimeline( author.id, { 
+			since_id: conversation_id,
+			end_time: endTime.toISOString(),
+			...options, 
+		});	
+
 		const jsTweetLast = await jsConversation.fetchLast(100)
 		const tweets = jsTweetLast.tweets
 		const includes = jsTweetLast.includes
-		// const { 
-		// 	data: tweet, 
-		// 	includes: { 
-		// 		users: [author] 
-		// 	} 
-		// } = await twitterClient.v2.singleTweet(conversation_id,options)
-		console.log(tweets)
+
 		const thread = tweets
-			.filter( t => t.in_reply_to_user_id === t.author_id ) 
+			.filter( t => 
+				t.in_reply_to_user_id === t.author_id && 
+				t.conversation_id == conversation_id 
+			) 
 			.reverse()
 
 

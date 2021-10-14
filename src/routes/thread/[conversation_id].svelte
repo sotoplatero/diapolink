@@ -39,7 +39,7 @@
 	
 <!-- <Slides id="webslides" class="bg-apple h-screen !overflow-y-hidden "> -->
 	<Slide class="text-center">
-		<div class="wrap size-50">
+		<div class="">
 			<Avatar src={author.profile_image_url} alt="{author.name}" class="w-16 h-16 mx-auto"/>
 			<a href="{user_url}">
 				<h1>{@html author.name}</h1>
@@ -47,7 +47,7 @@
 					@{author.username}
 				</p>
 			</a>
-			<p class="mt-4 sm:text-2xl">{@html author.html}</p>
+			<p class="mt-4 sm:text-xl">{@html author.html}</p>
 		</div>
 	</Slide>	
 
@@ -58,22 +58,22 @@
 				<a href="{user_url}" target="_blank" class="text-xl">
 					<div class="font-bold">{@html author.name}</div>
 					<div class="text-gray-500">
-							@{author.username}
+						@{author.username}
 					</div>
 				</a >
 			</div>
-			<p class="sm:text-2xl mt-4 !leading-tight whitespace-pre-line">
+			<p class="text-lg sm:text-xl mt-4 !leading-tight whitespace-pre-line">
 				{@html tweet.html}
 			</p>
 
 			{#if tweet.media && tweet.media.length}
-	      <div class="grid { tweet.media.length === 1 ? 'grid-cols-1' : 'grid-cols-2' } gap-2 mt-4">	
+		       <div class="grid { tweet.media.length === 1 ? 'grid-cols-1' : 'grid-cols-2' } gap-2 mt-4">	
 					{#each tweet.media as media, index}
 						<picture class="aspect-w-16 aspect-h-9 ">
 							<img src="{media.url}" alt="" class="object-cover rounded-2xl">
 						</picture>
 					{/each}
-	      </div>
+				</div>
 			{/if}
 
 		</Slide>
