@@ -17,21 +17,20 @@ const options = {
 export async function get({params}) {
 
 
-		// const { data: { conversation_id } } = await twitterClient.v2.singleTweet(params.tweet,{'tweet.fields': 'conversation_id'})
 		const conversation_id = params.conversation_id
+		const { data: tweet, includes: { users: [author]} } = await twitterClient.v2.singleTweet(conversation_id,options)
 
-		let jsConversation = await twitterClient.v2.search(`conversation_id:${conversation_id}`,options);	
-		const jsTweetLast = await jsConversation.fetchLast(1000)
+		let jsConversation = await twitterClient.v2.userTimeline(author.id,{ since_id: conversation_id });	
+		const jsTweetLast = await jsConversation.fetchLast(100)
 		const tweets = jsTweetLast.tweets
-		console.log(jsConversation)
 		const includes = jsTweetLast.includes
-		const { 
-			data: tweet, 
-			includes: { 
-				users: [author] 
-			} 
-		} = await twitterClient.v2.singleTweet(conversation_id,options)
-
+		// const { 
+		// 	data: tweet, 
+		// 	includes: { 
+		// 		users: [author] 
+		// 	} 
+		// } = await twitterClient.v2.singleTweet(conversation_id,options)
+		console.log(tweets)
 		const thread = tweets
 			.filter( t => t.in_reply_to_user_id === t.author_id ) 
 			.reverse()

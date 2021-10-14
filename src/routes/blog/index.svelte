@@ -5,7 +5,7 @@
 
 </script>
 
-<article id="webslides" class="h-screen w-2/5 mx-auto flex items-center ">
+<article id="webslides" class="h-screen w-full sm:w-2/5 px-2 mx-auto flex items-center ">
   <section class="text-center" style="">
 <!--     <span class="background-right-bottom" style="background-image:url('../static/images/iphone-hand.png')"></span> -->
     <div class="wrap size-40 aligncenter">

@@ -5,7 +5,7 @@
   $: tweet_id = tweet.split('/').pop().split('?')[0]
 </script>
 <div class="">
-  <article class="h-screen w-2/5 mx-auto flex items-center " >
+  <article class="h-screen w-full sm:w-2/5 px-2 mx-auto flex items-center " >
     
     <section class="" >
   <!--     <span class="background-right-bottom" ></span> -->
