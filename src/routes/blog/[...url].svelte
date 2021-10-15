@@ -39,10 +39,10 @@
 	{/if}
 </svelte:head>	
 
-<Slides class="text-white bg-gradient-to-b from-black to-gray-800">
+<Slides class="text-white h-screen bg-gradient-to-b from-black to-gray-800">
 
-	<Slide class="text-center" >
-		<div class="relative z-10">
+	<Slide class="h-screen flex items-center w-1/2 mx-auto" >
+		<div class="text-center">
 			
 			<img src="https://logo.clearbit.com/{blog.domain}" class="h-28 w-28 mx-auto rounded-full" alt="Logo Blog">
 			<a href="{blog.link}" class="space-y-4 block">
@@ -57,28 +57,38 @@
 			<p class="text-lg mt-6">{ emoji + emoji + emoji }</p>			
 			
 		</div>
-		<div class="fixed w-full h-full top-0 left-0 z-0 bg-gray-800 bg-opacity-75 bg-cover bg-center" ></div>
+
 	</Slide>
 
 	{#each blog.posts as post, index}
-		<Slide style="background-image: url(/blog/i/{ post.url.replace(/https?:\/\//,'')});">
-			<div class="flex items-center">
-				<img src="https://logo.clearbit.com/{blog.domain}" class="h-10 w-10 rounded-full mr-2">
-				<span class="uppercase">{blog.domain}</span>	
-			</div>
-			<a href="{post.url}" target="_blank" rel="nofollower noopener">
-				<h2 class="leading-tight sm:leading-snug">
-					<strong>{post.title}</strong>
-				</h2>
-			</a>
-			<p class="mb-4 text-gray-500 text-normal">
-				{@html post.author}
-				&bull;
-				{post.date} 
-			</p>
-			<p class="text-intro line-clamp-3 sm:line-clamp-5">{post.excerpt}</p>
+		<Slide  class="">
+	<div class="bg-cover relative" style="background-image: url(/blog/i/{ post.url.replace(/https?:\/\//,'')});">
+		<div class="absolute inset-0 bg-gray-800 bg-opacity-80"></div>
+		<div class="relative text-center h-screen flex items-center w-1/2 mx-auto">
 			
+			<div>
+				
+				<div class="flex items-center justify-center">
+					<img src="https://logo.clearbit.com/{blog.domain}" class="h-10 w-10 rounded-full mr-2">
+					<span class="uppercase">{blog.domain}</span>	
+				</div>
+				<a href="{post.url}" target="_blank" rel="nofollower noopener">
+					<h2 class="leading-tight sm:leading-snug">
+						<strong>{post.title}</strong>
+					</h2>
+				</a>
+				<p class="mb-4 text-gray-400 text-normal">
+					{@html post.author}
+					&bull;
+					{post.date} 
+				</p>
+				<p class="text-intro line-clamp-3 sm:line-clamp-5">{post.excerpt}</p>
+			</div>
+		</div>
+			
+	</div>
 		</Slide>
+		
 	{/each}
 
 </Slides>

@@ -29,7 +29,6 @@ export async function get({params}) {
 		// } = await tc.v2.singleTweet(conversation_id,options)
 
 		let challenge = await tc.v2.singleTweet(conversation_id,options)
-		console.log(jsTweetLast.includes)
 		let tweets = [...jsTweetLast.tweets, challenge.data]
 		const medias = [...jsTweetLast.includes.media, ...challenge.includes.media]
 		const users = [...jsTweetLast.includes.users, ...challenge.includes.users]

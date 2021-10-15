@@ -35,11 +35,11 @@
 	url={user_url}
 />
 
-<Slides class="bg-[#15202B] h-screen !overflow-y-hidden text-white" pagination='{{ "type": "fraction"}}'>
+<Slides class="bg-[#15202B] h-screen overflow-y-scroll text-white" pagination='{{ "type": "fraction"}}'>
 	
 <!-- <Slides id="webslides" class="bg-apple h-screen !overflow-y-hidden "> -->
-	<Slide class="text-center">
-		<div class="">
+	<Slide class="flex items-center h-screen w-2/5 mx-auto ">
+		<div class="text-center">
 			<Avatar src={author.profile_image_url} alt="{author.name}" class="w-16 h-16 mx-auto"/>
 			<a href="{user_url}">
 				<h1>{@html author.name}</h1>
@@ -52,29 +52,34 @@
 	</Slide>	
 
 	{#each tweets as tweet, index}
-		<Slide >
+		<Slide class="flex items-center h-screen w-2/5 mx-auto">
+			<div class="w-full">
 			<div class="flex items-center">
-				<Avatar src="{author.profile_image_url}" alt="{author.name}" class="h-10 w-10 mr-2"/>	
-				<a href="{user_url}" target="_blank" class="text-xl">
+				<Avatar src="{author.profile_image_url}" alt="{author.name}" class="h-10 w-10 mr-4"/>	
+				<a href="{user_url}" target="_blank" class="text-lg">
 					<div class="font-bold">{@html author.name}</div>
 					<div class="text-gray-500">
 						@{author.username}
 					</div>
 				</a >
 			</div>
-			<p class="text-lg sm:text-xl mt-4 !leading-tight whitespace-pre-line">
+			<p class="text-base sm:text-lg mt-2 !leading-tight whitespace-pre-line">
 				{@html tweet.html}
 			</p>
 
 			{#if tweet.media && tweet.media.length}
-		       <div class="grid { tweet.media.length === 1 ? 'grid-cols-1' : 'grid-cols-2' } gap-2 mt-4">	
+				<Slides 
+					class="mt-2" 
+					pagination='{{ "clickable": true }}'
+				>
 					{#each tweet.media as media, index}
-						<picture class="aspect-w-16 aspect-h-9 ">
-							<img src="{media.url}" alt="" class="object-cover rounded-2xl">
-						</picture>
+						<Slide class="aspect-w-4 aspect-h-3">
+							<img src="{media.url}" alt="" class="object-cover rounded-lg">
+						</Slide>
 					{/each}
-				</div>
+				</Slides>
 			{/if}
+			</div>
 
 		</Slide>
 	{/each}

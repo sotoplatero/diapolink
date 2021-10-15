@@ -33,16 +33,12 @@
 	url='https://diapo.link/challenge/{thread}'
 />
 
-<Slides class="!overflow-y-hidden bg-[#15202B] text-white" pagination='{{ "type": "fraction"}}'>
-	<SwiperSlide class="max-h-screen h-screen flex items-center">
-	     <div class="w-full sm:w-2/5 mx-auto px-2">
+<Slides class="h-screen bg-[#15202B] text-white" pagination='{{ "type": "fraction"}}'>
+	<SwiperSlide class="h-full flex items-center">
+	     <div class="w-full sm:w-2/4 mx-auto px-2">
 	     	<div class="relative">
 	     		
-				<div class="aspect-w-4 aspect-h-3">
-					<img src="{challenge.media.url || challenge.media.preview_image_url}" alt="" class="w-full object-cover rounded-lg" loading="lazy">
-				</div>
-		     	
-		     	<div class="mt-4">
+		     	<div class="mb-2">
 					<div class="flex items-center justify-center">
 						<Avatar src="{challenge.author.profile_image_url}" alt="{challenge.author.name}" class="h-6 w-6 mr-2"/>	
 						<a href="https://twitter.com/{challenge.author.username}" target="_blank" class="text-sm">
@@ -54,17 +50,20 @@
 							</div>
 						</a >
 					</div>
-					<p class="mt-2 text-base text-center">
+					<p class="mt-1 text-base text-center">
 						{ challenge.text}
 					</p>
 		     	</div>
+				<div class="aspect-w-4 aspect-h-3">
+					<img src="{challenge.media.url || challenge.media.preview_image_url}" alt="" class="w-full object-cover rounded-lg" loading="lazy">
+				</div>		     	
 	     	</div>
 	     </div>
 	</SwiperSlide>	
 
 	{#each tweets.slice(1) as tweet, index}
 		<SwiperSlide class="max-h-screen h-screen flex items-center" >
-		     <div class="w-full sm:w-2/5 mx-auto px-2">
+		     <div class="w-full sm:w-2/4 mx-auto px-2">
 		     	<div class="relative">
 		     		
 					<div class="aspect-w-4 aspect-h-3 mt-2 ">
@@ -72,9 +71,9 @@
 						<div class="swiper-lazy-preloader"></div>
 					</div>
 			     	
-			     	<div class="mt-4">
+			     	<div class="absolute bottom-0 w-full bg-gray-900 bg-opacity-50 p-2">
 							<a href="https://twitter.com/{tweet.author.username}" target="_blank" class="text-sm ">
-						<div class="flex items-center justify-center">
+						<div class="flex items-center justify-center drop-shadow-lg">
 							<Avatar 
 								src="{tweet.author.profile_image_url}" 
 								alt="{tweet.author.name}" 
@@ -82,7 +81,7 @@
 							/>	
 								<div class="font-semibold ml-1">
 									{@html tweet.author.name}
-									<div class="text-gray-500">
+									<div class="text-white">
 											@{tweet.author.username}
 									</div>
 								</div>

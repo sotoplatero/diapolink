@@ -18,7 +18,10 @@ export async function get({params}) {
 
 
 		const conversation_id = params.conversation_id
-		const { data: tweet, includes: { users: [author]} } = await twitterClient.v2.singleTweet(conversation_id,options)
+		const { 
+			data: tweet, 
+			includes: { users: [author], media} 
+		} = await twitterClient.v2.singleTweet(conversation_id,options)
 
 		let endTime = new Date(tweet.created_at)
 		endTime.setDate(endTime.getDate() + 1)
@@ -30,16 +33,22 @@ export async function get({params}) {
 		});	
 
 		const jsTweetLast = await jsConversation.fetchLast(100)
-		const tweets = jsTweetLast.tweets
-		const includes = jsTweetLast.includes
+		const medias = [...jsTweetLast.includes.media, ...media]
 
-		const thread = tweets
+		const tweets = jsTweetLast.tweets
 			.filter( t => 
 				t.in_reply_to_user_id === t.author_id && 
 				t.conversation_id == conversation_id 
-			) 
+			)
+			.concat([tweet])
 			.reverse()
-
+			.map( t => ({ 
+				...t,
+				html: twitter.autoLink(t.text),
+				media: medias?.filter( m => 
+					t.attachments && t.attachments.media_keys.includes(m.media_key) 
+				)
+			}))		
 
 	return {
 		body: {
@@ -47,42 +56,8 @@ export async function get({params}) {
 				...author,
 				html: twitter.autoLink(author.description)
 			},
-			tweets: [ tweet, ...thread ]
-				.map( t => ({ 
-					...t,
-					html: twitter.autoLink(t.text),
-					media: includes.media
-						?.filter( m => t.attachments && t.attachments.media_keys.includes(m.media_key) )
-				}))}
+			tweets, 
+		}
 	}
 
-}
-
-async function getTweet(id) {
-	const {data,includes} = await t.get('tweets', { 
-		...options, 		
-		ids: id,	
-		user: {
-			fields: 'name,username,description,profile_image_url,url'
-		}, 
-	});
-	return { 
-		tweet: {...data[0]}, 
-		author: includes.users[0] 
-	}
-}
-
-async function getconversation_id(id){
-	let tweet
-	const options = { 
-		'ids': id,
-		'tweet.fields': 'conversation_id',
-	}
-
-	try {
-		tweet = await t.get('tweets', options) ;
-	} catch (e) {
-		return e
-	}
-	return tweet.data[0].conversation_id	
 }

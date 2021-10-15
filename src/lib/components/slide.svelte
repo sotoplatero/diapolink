@@ -8,15 +8,13 @@
 </script>
 <SwiperSlide class="">
 	<!-- BACK LAYER -->
-	{#if style}
+<!-- 	{#if style}
 		<div {style} class="absolute top-0 left-0 w-full h-full z-0 bg-center bg-cover bg-black bg-opacity-70"></div>
 		<div class="absolute top-0 left-0 w-full h-full z-10 bg-black bg-opacity-90"></div>
-	{/if}
+	{/if} -->
 
-	<section class="relative min-h-screen w-full sm:w-2/5 mx-auto flex items-center justify-center z-30 {_class}" >
-		<div class="px-4 ">
-			<slot></slot>
-		</div>
+	<section class="{_class}" >
+		<slot></slot>
 	</section>
 </SwiperSlide>
 

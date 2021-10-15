@@ -8,6 +8,7 @@
 
 	export let direction = 'horizontal'
 	export let pagination = true
+	export let loop = true
 	export {_class as class}
 
 	let _class
@@ -16,14 +17,12 @@
 <Swiper
 	modules={[ Mousewheel, Pagination, Lazy ]}
 	mousewheel={true}
-	{pagination}
-	loop={true}
-	{direction}
 	preloadImages={false}
 	lazy={true}
-	on:slideChange={() => console.log('slide change')}
-	on:swiper={(e) => console.log(e.detail[0])}
-	class="min-h-screen h-screen w-full {_class}"
+	{pagination}
+	{loop}
+	{direction}
+	class="{_class}"
 >
 	<slot></slot>
 </Swiper>
