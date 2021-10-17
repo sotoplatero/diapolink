@@ -72,6 +72,7 @@
 				<Slides 
 					class="mt-2" 
 					pagination='{{ "clickable": true }}'
+					loop={false}
 				>
 					{#each tweet.media as media, index}
 						<Slide class="aspect-w-4 aspect-h-3">

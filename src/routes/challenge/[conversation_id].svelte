@@ -35,7 +35,7 @@
 
 <Slides class="h-screen bg-[#15202B] text-white" pagination='{{ "type": "fraction"}}'>
 	<SwiperSlide class="h-full flex items-center">
-	     <div class="w-full sm:w-2/4 mx-auto px-2">
+	     <div class="w-11/12 sm:w-2/4 mx-auto">
 	     	<div class="relative">
 	     		
 		     	<div class="mb-2">
@@ -63,27 +63,22 @@
 
 	{#each tweets.slice(1) as tweet, index}
 		<SwiperSlide class="max-h-screen h-screen flex items-center" >
-		     <div class="w-full sm:w-2/4 mx-auto px-2">
-		     	<div class="relative">
+		     <div class="w-11/12 sm:w-2/4 mx-auto">
+		     	<div class="">
 		     		
-					<div class="aspect-w-4 aspect-h-3 mt-2 ">
-						<img data-src="{tweet.media.url || tweet.media.preview_image_url}" alt="" class="w-full object-cover rounded-lg swiper-lazy" src="data:image/gif;base64,R0lGODlhAQABAPAAAAAAAAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" >
-						<div class="swiper-lazy-preloader"></div>
-					</div>
-			     	
-			     	<div class="absolute bottom-0 w-full bg-gray-900 bg-opacity-50 p-2">
+			     	<div class="">
 							<a href="https://twitter.com/{tweet.author.username}" target="_blank" class="text-sm ">
 						<div class="flex items-center justify-center drop-shadow-lg">
 							<Avatar 
 								src="{tweet.author.profile_image_url}" 
 								alt="{tweet.author.name}" 
-								class="h-8 w-8 mr-2 "
+								class="h-6 w-6"
 							/>	
-								<div class="font-semibold ml-1">
+								<div class="font-semibold ml-1 line-clamp-1">
 									{@html tweet.author.name}
-									<div class="text-white">
+									<span class="text-white">
 											@{tweet.author.username}
-									</div>
+									</span>
 								</div>
 						</div>
 							</a >
@@ -91,6 +86,11 @@
 							{ tweet.text}
 						</p> -->
 			     	</div>
+					<div class="aspect-w-4 aspect-h-3 mt-2 ">
+						<img data-src="{tweet.media.url || tweet.media.preview_image_url}" alt="" class="w-full object-cover rounded-lg swiper-lazy" src="data:image/gif;base64,R0lGODlhAQABAPAAAAAAAAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" >
+						<div class="swiper-lazy-preloader"></div>
+					</div>
+			     	
 		     	</div>
 		     </div>
 				

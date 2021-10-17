@@ -16,9 +16,9 @@
     <meta property="twitter:user" content="@sotoplatero"  />
 </svelte:head>
 
-<Slides direction={'vertical'}>
+<Slides direction={'vertical'} class="h-screen">
 
-	<Slide class="" >
+	<Slide class="w-11/12 sm:w-1/2 mx-auto h-screen flex items-center justify-center" >
 		<div class="text-center">
 
 			<p class="uppercase font-light tracking-wider text-2xl">
@@ -42,18 +42,21 @@
 		</div>		
 	</Slide>
 
-	<Slide class="text-center">
-		<h2 class="text-5xl leading-snug font-bold">Create <br> SlideShow <br> Now</h2>
-		<div class="grid grid-cols-3 gap-2">
-			<a href="/blog" >
-				<button class="w-full" >Blog</button>
-			</a>
-			<a href="/thread" >
-				<button class="w-full">Thread</button>
-			</a>
-			<a href="/challenge" >
-				<button class="w-full">Challenge</button>
-			</a>
+	<Slide class="w-11/12 sm:w-1/2 mx-auto h-screen flex items-center justify-center text-center">
+		<div>
+			<h2 class="text-5xl leading-snug font-bold">Create <br> SlideShow <br> Now</h2>
+			<div class="grid grid-cols-3 gap-2">
+				<a href="/blog" >
+					<button class="w-full" >Blog</button>
+				</a>
+				<a href="/thread" >
+					<button class="w-full">Thread</button>
+				</a>
+				<a href="/challenge" >
+					<button class="w-full">Challenge</button>
+				</a>
+			</div>
+			
 		</div>
 	</Slide>
 
