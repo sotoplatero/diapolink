@@ -25,7 +25,7 @@ export async function get({params}) {
                 // 'Content-Disposition': `attachment; filename="${params.url.replace('/','-')}"`,
                 'content-type': 'application/octet-stream',
                 // 'content-type': res.headers.get('content-type'),
-                'Cache-Control': `public, immutable, no-transform, s-maxage=31536000, max-age=31536000`,
+                'Cache-Control': 's-maxage=1, stale-while-revalidate',
             },
             body: imageArray
         }; 

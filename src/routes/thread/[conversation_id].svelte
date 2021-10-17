@@ -33,7 +33,7 @@
 		const tweetWithImage = tweets.find(t=>t.media && t.media.length)
 		if (tweetWithImage) {
 			const imgSrc = tweetWithImage.media[0].url.replace(/^https:\/\//,'')
-			image =  `${dev ? 'http://localhost:300' : 'https://diapo.link'}/img/${imgSrc}`
+			image =  `${dev ? 'http://localhost:300' : 'https://diapo.link'}/og/${imgSrc}`
 		}
 	}
 </script>
