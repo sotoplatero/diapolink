@@ -20,8 +20,13 @@ export async function get({params}) {
 		const conversation_id = params.conversation_id
 		const { 
 			data: tweet, 
-			includes: { users: [author], media} 
+			includes: { users, media} 
 		} = await twitterClient.v2.singleTweet(conversation_id,options)
+
+		const author = {
+				...users[0],
+				html: twitter.autoLink(users[0].description)
+			}
 
 		let endTime = new Date(tweet.created_at)
 		endTime.setDate(endTime.getDate() + 1)
@@ -52,14 +57,7 @@ export async function get({params}) {
 
 	return {
 		headers: { 'Cache-Control':' s-maxage=1, stale-while-revalidate' },
-		body: {
-
-			author: {
-				...author,
-				html: twitter.autoLink(author.description)
-			},
-			tweets, 
-		}
+		body: {	author ,tweets }
 	}
 
 }

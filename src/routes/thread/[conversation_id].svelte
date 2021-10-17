@@ -47,7 +47,7 @@
 <Slides class="bg-[#15202B] h-screen overflow-y-scroll text-white" pagination='{{ "type": "fraction"}}'>
 	
 <!-- <Slides id="webslides" class="bg-apple h-screen !overflow-y-hidden "> -->
-	<Slide class="flex items-center h-screen w-2/5 mx-auto ">
+	<Slide class="flex items-center h-screen w-11/12 sm:w-3/5 md:w-2/5 mx-auto">
 		<div class="text-center">
 			<Avatar src={author.profile_image_url} alt="{author.name}" class="w-16 h-16 mx-auto"/>
 			<a href="{user_url}">
@@ -61,18 +61,18 @@
 	</Slide>	
 
 	{#each tweets as tweet, index}
-		<Slide class="flex items-center h-screen w-2/5 mx-auto">
+		<Slide class="flex items-center h-screen w-11/12 sm:w-3/5 md:w-2/5 mx-auto">
 			<div class="w-full">
 			<div class="flex items-center">
-				<Avatar src="{author.profile_image_url}" alt="{author.name}" class="h-10 w-10 mr-4"/>	
-				<a href="{user_url}" target="_blank" class="text-lg">
-					<div class="font-bold">{@html author.name}</div>
+				<Avatar src="{author.profile_image_url}" alt="{author.name}" class="h-8 w-8 mr-4"/>	
+				<a href="{user_url}" target="_blank" class="text-base sm:text-lg !leading-snug">
+					<div class="font-semibold">{@html author.name}</div>
 					<div class="text-gray-500">
 						@{author.username}
 					</div>
 				</a >
 			</div>
-			<p class="text-base sm:text-lg mt-2 !leading-tight whitespace-pre-line">
+			<p class="text-sm sm:text-base mt-2 !leading-snug ">
 				{@html tweet.html}
 			</p>
 
@@ -83,8 +83,11 @@
 					loop={false}
 				>
 					{#each tweet.media as media, index}
-						<Slide class="aspect-w-4 aspect-h-3">
-							<img src="{media.url}" alt="" class="object-cover rounded-lg">
+						<Slide >
+							<div class="aspect-w-4 aspect-h-3 rounded-lg !overflow-hidden">
+								<img src="{media.url}" alt="Tweet from {author.username}" class="object-cover rounded-lg overflow-hidden">
+								
+							</div>
 						</Slide>
 					{/each}
 				</Slides>
