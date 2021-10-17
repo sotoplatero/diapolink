@@ -1,8 +1,9 @@
 import sharp from 'sharp'
 
-export async function get({params}) {
+export async function get({query}) {
 
-    const res = await fetch(`https://${params.url}`)
+    let url = query.get('url');
+    const res = await fetch(url)
 
 	if (res.ok) {
         // const resImage = await fetch(src)
