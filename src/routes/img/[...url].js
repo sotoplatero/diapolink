@@ -22,9 +22,9 @@ export async function get({params}) {
 
         return {
             headers: { 
-                'Content-Disposition': `attachment; filename="${params.url.replace('/','-')}"`,
-                // 'content-type': 'application/octet-stream',
-                'content-type': res.headers.get('content-type'),
+                // 'Content-Disposition': `attachment; filename="${params.url.replace('/','-')}"`,
+                'content-type': 'application/octet-stream',
+                // 'content-type': res.headers.get('content-type'),
                 'Cache-Control': `public, immutable, no-transform, s-maxage=31536000, max-age=31536000`,
             },
             body: imageArray
