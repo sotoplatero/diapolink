@@ -19,7 +19,8 @@ export async function get({query}) {
           })
           .toBuffer()  
 
-        const imageArray = new Uint8Array(imageBufferResize)
+        // const imageArray = new Uint8Array(imageBufferResize)
+        const img = Buffer.from(imageBufferResize, 'binary')
 
         return {
             headers: { 
@@ -28,7 +29,7 @@ export async function get({query}) {
                 // 'content-type': res.headers.get('content-type'),
                 'Cache-Control': 's-maxage=1, stale-while-revalidate',
             },
-            body: imageArray
+            body: img
         }; 
     }
     
