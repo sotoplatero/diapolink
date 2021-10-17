@@ -29,10 +29,11 @@
 </script>
 
 <Meta 
-	title="Diapolink - Thread of {author.name}" 
+	title="DiapoLink - Thread of {author.name}" 
 	author={author.username}
 	description={tweets[0].text}
 	url={user_url}
+	image={ tweet.media && tweet.media[0] }
 />
 
 <Slides class="bg-[#15202B] h-screen overflow-y-scroll text-white" pagination='{{ "type": "fraction"}}'>
