@@ -24,16 +24,24 @@
 	export let tweets = []
 	export let author = {}
 	const user_url = `https://twitter.com/${author.username}`
+	let image
 
 	'https://twitter.com/intent/tweet?in_reply_to=1443976651818377249'
+
+	$: {
+		const tweetWithImage = tweets.find(t=>t.media && t.media.length)
+		if (tweetWithImage) {
+			image =  tweetWithImage.media[0].url
+		}
+	}
 </script>
 
 <Meta 
 	title="DiapoLink - Thread of {author.name}" 
 	author={author.username}
-	description={tweets[0].text}
+	description={tweets[0].text.replace(/\n/g,' ')}
 	url={user_url}
-	image={ tweet.media && tweet.media[0] }
+	{image}
 />
 
 <Slides class="bg-[#15202B] h-screen overflow-y-scroll text-white" pagination='{{ "type": "fraction"}}'>

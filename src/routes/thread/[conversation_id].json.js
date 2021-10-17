@@ -51,7 +51,9 @@ export async function get({params}) {
 			}))		
 
 	return {
+		headers: { 'Cache-Control':' s-maxage=1, stale-while-revalidate' },
 		body: {
+
 			author: {
 				...author,
 				html: twitter.autoLink(author.description)

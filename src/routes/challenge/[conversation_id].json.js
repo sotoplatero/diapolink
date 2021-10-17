@@ -53,6 +53,7 @@ export async function get({params}) {
 			// .filter((t,i)=>i<10)
 
 	return {
+		headers: { 'Cache-Control':' s-maxage=1, stale-while-revalidate' },
 		body: {	tweets } 
 	}
 
