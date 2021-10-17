@@ -17,6 +17,7 @@
   }	
 </script>
 <script>
+	import { dev } from '$app/env';	
 	import Meta from '$lib/components/meta.svelte'
 	import Slides from '$lib/components/Slides.svelte'
 	import Slide from '$lib/components/slide.svelte'
@@ -31,7 +32,8 @@
 	$: {
 		const tweetWithImage = tweets.find(t=>t.media && t.media.length)
 		if (tweetWithImage) {
-			image =  tweetWithImage.media[0].url
+			const imgSrc = tweetWithImage.media[0].url.replace(/^https:\/\//,'')
+			image =  `${dev ? 'http://localhost:300' : 'https://diapo.link'}/img/${imgSrc}`
 		}
 	}
 </script>
