@@ -33,7 +33,10 @@ export async function get({params}) {
 		});	
 
 		const jsTweetLast = await jsConversation.fetchLast(100)
-		const medias = [...(jsTweetLast.includes?.media || []), ...(media||[])]
+		
+		const includesMedia = jsTweetLast.includes?.media || [] 
+		const authorMedia = media || []
+		const medias = [ ...includesMedia, ...authorMedia ]
 
 		const tweets = jsTweetLast.tweets
 			.filter( t => 
