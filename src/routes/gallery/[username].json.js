@@ -16,47 +16,39 @@ const options = {
 export async function get({params}) {
 
 
-		const conversation_id = params.conversation_id
-		const { 
-			data: tweet, 
-			includes: { users, media} 
-		} = await twitterClient.v2.singleTweet(conversation_id,options)
-
-		const author = {
-			...users[0],
-			html: twitter.autoLink(users[0].description)
-		}
-
-		let endTime = new Date(tweet.created_at)
-		endTime.setDate(endTime.getDate() + 1)
+		const username = params.username
+		const {data: author} = await twitterClient.v2.userByUsername(username, {
+			'user.fields': 'description,entities,id,location,name,profile_image_url,url,username'
+		})
 
 		let jsConversation = await twitterClient.v2.userTimeline( author.id, { 
-			since_id: conversation_id,
-			end_time: endTime.toISOString(),
+			exclude: 'retweets,replies',
 			...options, 
 		});	
 
 		const jsTweetLast = await jsConversation.fetchLast(100)
-		const medias = [...(jsTweetLast.includes?.media || []), ...(media||[])]
+		const medias = jsTweetLast.includes.media 
 
 		const tweets = jsTweetLast.tweets
-			.filter( t => 
-				t.in_reply_to_user_id === t.author_id && 
-				t.conversation_id == conversation_id 
-			)
-			.concat([tweet])
-			.reverse()
+			.filter( t =>  
+				medias.some( m => 
+					t.attachments?.media_keys.includes(m.media_key) &&
+					m.type === 'photo'
+				)
+		    ) 
+			// .reverse()
 			.map( t => ({ 
 				...t,
 				html: twitter.autoLink(t.text),
 				media: medias?.filter( m => 
 					t.attachments && t.attachments.media_keys.includes(m.media_key) 
 				)
-			}))		
+			}))
+			.filter((t,i)=>i<12)
 
 	return {
 		headers: { 'Cache-Control':' s-maxage=1, stale-while-revalidate' },
-		body: {	author ,tweets }
+		body: {	author, tweets }
 	}
 
 }

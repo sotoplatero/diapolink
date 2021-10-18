@@ -74,21 +74,20 @@
 					</div>
 				</a >
 			</div>
-			<p class="text-sm sm:text-base mt-2 !leading-snug ">
+			<p class="mt-2 !leading-snug ">
 				{@html tweet.html}
 			</p>
 
 			{#if tweet.media && tweet.media.length}
 				<Slides 
-					class="mt-2" 
 					pagination='{{ "clickable": true }}'
 					loop={false}
+					class="mt-2" 
 				>
 					{#each tweet.media as media, index}
 						<Slide >
 							<div class="aspect-w-4 aspect-h-3 rounded-lg !overflow-hidden">
 								<img src="{media.url}" alt="Tweet from {author.username}" class="object-cover rounded-lg overflow-hidden">
-								
 							</div>
 						</Slide>
 					{/each}
