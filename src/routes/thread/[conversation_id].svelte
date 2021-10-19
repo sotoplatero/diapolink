@@ -50,7 +50,7 @@
 <Slides class="bg-[#15202B] h-screen overflow-y-scroll text-white" pagination='{{ "type": "fraction"}}'>
 	
 <!-- <Slides id="webslides" class="bg-apple h-screen !overflow-y-hidden "> -->
-	<Slide class="flex items-center h-screen w-11/12 sm:w-3/5 md:w-2/5 mx-auto">
+	<Slide class="flex items-center justify-center h-screen w-11/12 sm:w-3/5 md:w-2/5 mx-auto">
 		<div class="text-center">
 			<Avatar src={author.profile_image_url} alt="{author.name}" class="w-16 h-16 mx-auto"/>
 			<a href="{user_url}">
