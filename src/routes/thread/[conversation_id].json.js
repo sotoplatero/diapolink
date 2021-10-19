@@ -1,5 +1,6 @@
 import {TwitterApi} from 'twitter-api-v2';
 import twitter from 'twitter-text'
+import { read, create } from '$lib/supabase'
 
 const twitterClient = new TwitterApi(import.meta.env.VITE_TWITTER_BEARER_TOKEN);
 
@@ -16,10 +17,19 @@ const options = {
 export async function get({params}) {
 
 
-		const conversation_id = params.conversation_id
+	const conversation_id = params.conversation_id
+
+	const { data: savedThread, error } = await read(conversation_id)
+	if (savedThread) {
+		return {
+			headers: { 'Cache-Control':' s-maxage=1, stale-while-revalidate' },
+			body: savedThread
+		}
+	}
+
 		const { 
 			data: tweet, 
-			includes: { users, media} 
+			includes: { users, media } 
 		} = await twitterClient.v2.singleTweet(conversation_id,options)
 
 		const author = {
@@ -53,6 +63,9 @@ export async function get({params}) {
 					t.attachments && t.attachments.media_keys.includes(m.media_key) 
 				)
 			}))		
+
+		// const response = await create({conversation_id,author,tweets})
+		// console.log(response.error)
 
 	return {
 		headers: { 'Cache-Control':' s-maxage=1, stale-while-revalidate' },

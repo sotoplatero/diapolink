@@ -5,16 +5,16 @@ export const supabase = createClient(
   String(import.meta.env.VITE_SUPABASE_ANON_KEY)
 )
 
-export const dbThread = (conversation_id) => {
-  return supabase
+export const read = async (conversation_id) => {
+  return await supabase
     .from('threads')
     .select('conversation_id, username, data')
     .eq('conversation_id',conversation_id)
     .single()
 }
 
-export const saveThread = (thread) => {
-  return supabase
+export const create = async (thread) => {
+  return await supabase
     .from('threads')
     .insert([thread])
 }
