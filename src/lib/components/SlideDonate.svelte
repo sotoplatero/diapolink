@@ -11,7 +11,7 @@
 			<p class="text-xl sm:text-2xl font-extrabold mb-2">Thank you for using Diapo<span class="text-blue-500">&bull;</span>Link.</p>
 			<p>If you ❤️, consider a donation to continue <b>improving it</b> 🚀</p>
 			<div class="mt-8">
-				<a href="https://qvapay.com/payme/diapo.link" target="_blank" rel="nofollower noopener"><img src="/qvapay-logo-d.webp" alt="" class="w-40 mx-auto block"></a>
+				<a href="https://qvapay.com/payme/diapo.link" target="_blank" rel="nofollower noopener"><img src="/qvapay-logo-l.webp" alt="" class="w-40 mx-auto block"></a>
 <!-- 				<p>
 					<a href="https://buymeacoffee.com/diapo.link" target="_blank" rel="nofollower noopener">
 						<img src="/bmc-button.png" alt="" class="w-40 mx-auto">
