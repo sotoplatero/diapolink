@@ -21,6 +21,7 @@
 	import Meta from '$lib/components/meta.svelte'
 	import Slides from '$lib/components/Slides.svelte'
 	import Slide from '$lib/components/slide.svelte'
+	import SlideDonate from '$lib/components/SlideDonate.svelte'
 	import Avatar from '$lib/components/avatar.svelte'
 	export let tweets = []
 	export let author = {}
@@ -66,7 +67,7 @@
 		<Slide class="flex items-center h-screen w-11/12 sm:w-3/5 md:w-2/5 mx-auto">
 			<div class="w-full">
 			<div class="flex items-center">
-				<Avatar src="{author.profile_image_url}" alt="{author.name}" class="h-8 w-8 mr-4"/>	
+				<Avatar src="{author.profile_image_url}" alt="{author.name}" class="h-12 w-12 mr-4"/>	
 				<a href="{user_url}" target="_blank" class="text-base sm:text-lg !leading-snug">
 					<div class="font-semibold">{@html author.name}</div>
 					<div class="text-gray-500">
@@ -97,4 +98,5 @@
 
 		</Slide>
 	{/each}
+	<SlideDonate/>
 </Slides>
