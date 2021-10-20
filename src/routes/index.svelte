@@ -19,24 +19,25 @@
 <Slides direction={'vertical'} class="h-screen">
 
 	<Slide class="w-11/12 sm:w-1/2 mx-auto h-screen flex items-center justify-center" >
-		<div class="text-center">
+		<div class="text-center " >
 
-			<p class="uppercase font-light tracking-wider text-2xl">
-				Diapo&bull;Link
+			<p class="uppercase tracking-wider text-2xl mb-3">
+				<img src="/logo.png" class="w-16 h-16 rounded-md mx-auto">
+				Diapo<span class="text-blue-600">&bull;</span>Link
 			</p>				
-			<h1 >Create SlideShow Easily</h1>
+			<h1 class="text-6xl font-bold"><span class="">Create</span> <br><span class="">SlideShow</span> <br><span class="">Easily</span></h1>
 			<p class="text-2xl text-gray-600 mt-4">
-				Don't waste time designed complex slides.
+				Don't waste time designed complex slides. Easily create presentations from a twitter thread or from a blog 
 			</p>
 			<div class="flex justify-center space-x-6 mt-8">
 				<div class="">
-					<button class="button" title="Start DiapoLink">
+					<button class="btn text-xl !bg-blue-700" title="Start DiapoLink">
 		                Start &darr;
 			        </button>
 				</div>
-				<div class="">
+<!-- 				<div class="">
 			        <a href="https://twitter.com/intent/tweet?text=DiapoLink - Create SlideShow Easily&url=" class="button text-indigo-700"><strong>TWEET</strong></a>
-				</div>
+				</div> -->
 			</div>
 			
 		</div>		
